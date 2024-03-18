@@ -3,14 +3,23 @@
 <h1><%= wine.name %></h1>
 <p class="instructions">What type of wine is <%= wine.name %>?</p>
 <p class="instructions">Pick from your saved types or add a new type.</p>
-<p><%= wine.type %></p>
 <br>
 <br>
 
-<form id="new-type-form" action="/wines" method="POST">
-  <label>don't use yet</label>
+<form id="new-type-form" action="/wines/<%= wine._id %>/types/new" method="POST">
+  <label>Create New Type: </label>
   <input type="text" name="name">
   <input type="submit" value="Add">
+</form>
+
+<form id="add-saved-type" action="/wines/<%= wine._id %>/types" method="POST">
+  <select name="type-id">
+    <option value="blank"></option>
+    <%- types.map(t => 
+      `<option value="${t._id}">${t.name}</option>`
+      ).join('') %>
+  </select>
+  <button type="submit">Select</button>
 </form>
 
 <%- include('../partials/footer') %>

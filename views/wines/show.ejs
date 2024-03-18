@@ -8,7 +8,9 @@
         <a href="/wines/<%= wine._id %>/types"><button>Edit</button></a>
     </div>
     <div class="value-d">
-        <p class="value-p"><%= wine.type %></p>
+        <% if (wine.type) { %> 
+            <p class="value-p"><%= wine.type.name %></p>
+        <% } %>
     </div>
 </section><br>
 
@@ -17,7 +19,7 @@
         <p class="label-p">My Rating</p>
     </div>
     <div class="value-d">
-        <p class="value-p">calculation</p>
+        <p class="value-p">(calculation)</p>
     </div>
 </section><br>
 
@@ -27,7 +29,9 @@
         <button>Edit</button>
     </div>
     <div class="value-d">
-        <p class="value-p"><%= wine.maker %></p>
+        <% if (wine.maker) { %> 
+            <p class="value-p"><%= wine.maker.name %></p>
+        <% } %>
     </div>
 </section><br>
 
@@ -38,18 +42,23 @@
         <!-- make divs for each one and a delete button for each -->
     </div>
     <div class="value-d">
-        <p class="value-p"><%= wine.tags %></p>
+        <% if (wine.tags) { %> 
+            <p class="value-p"><%= wine.tags %></p> 
+            <!-- probably need a for each here -->
+        <% } %>
     </div>
 </section><br>
 
 <section>
     <div class="label-d">
-        <p class="label-p">Locations</p>
+        <p class="label-p">Vendors</p>
         <button>Add</button>
         <!-- make divs for each one and a delete button for each -->
     </div>
     <div class="value-d">
-        <p class="value-p"><%= wine.restaurants %></p>
+        <% if (wine.vendors) { %> 
+            <p class="value-p"><%= wine.vendors %></p>
+        <% } %>
     </div>
 </section><br>
 
@@ -60,7 +69,9 @@
         <!-- each note should have an edit button, you can delete from edit page too -->
     </div>
     <div class="value-d">
-        <p class="value-p"><%= wine.notes %></p>
+        <% if (wine.notes) { %> 
+            <p class="value-p"><%= wine.notes %></p>
+        <% } %>
     </div>
 </section><br>
 

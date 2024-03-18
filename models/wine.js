@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+// const Tag = require('../models/tag')
 
 const wineSchema = new Schema({
     name: {type: String, required: true},

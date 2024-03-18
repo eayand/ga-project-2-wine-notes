@@ -1,6 +1,10 @@
 <%- include('../partials/header') %>
 
 <h2><%= title %></h2>
+<a href="/wines/new"><button>Add a Wine</button></a>
+<br>
+<br>
+
 
 <% wines.forEach(function(w) { %>
     <a href="/wines/<%= w._id %>"><button><%= w.name %></button></a>
