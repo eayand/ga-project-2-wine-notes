@@ -1,0 +1,71 @@
+<%- include('../partials/header') %>
+
+<h1><%= wine.name %></h1>
+
+<section>
+    <div class="label-d">
+        <p class="label-p">Type</p>
+        <a href="/wines/<%= wine._id %>/types"><button>Edit</button></a>
+    </div>
+    <div class="value-d">
+        <p class="value-p"><%= wine.type %></p>
+    </div>
+</section><br>
+
+<section>
+    <div class="label-d">
+        <p class="label-p">My Rating</p>
+    </div>
+    <div class="value-d">
+        <p class="value-p">calculation</p>
+    </div>
+</section><br>
+
+<section>
+    <div class="label-d">
+        <p class="label-p">Maker</p>
+        <button>Edit</button>
+    </div>
+    <div class="value-d">
+        <p class="value-p"><%= wine.maker %></p>
+    </div>
+</section><br>
+
+<section>
+    <div class="label-d">
+        <p class="label-p">Tags</p>
+        <button>Add</button>
+        <!-- make divs for each one and a delete button for each -->
+    </div>
+    <div class="value-d">
+        <p class="value-p"><%= wine.tags %></p>
+    </div>
+</section><br>
+
+<section>
+    <div class="label-d">
+        <p class="label-p">Locations</p>
+        <button>Add</button>
+        <!-- make divs for each one and a delete button for each -->
+    </div>
+    <div class="value-d">
+        <p class="value-p"><%= wine.restaurants %></p>
+    </div>
+</section><br>
+
+<section>
+    <div class="label-d">
+        <p class="label-p">Notes</p>
+        <button>New Note</button>
+        <!-- each note should have an edit button, you can delete from edit page too -->
+    </div>
+    <div class="value-d">
+        <p class="value-p"><%= wine.notes %></p>
+    </div>
+</section><br>
+
+<form action="/wines/<%= wine._id %>?_method=DELETE" method="POST">
+<button type="submit">Delete This Wine</button>
+</form>
+
+<%- include('../partials/footer') %>

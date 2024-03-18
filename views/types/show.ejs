@@ -1,0 +1,16 @@
+<%- include('../partials/header') %>
+
+<h1><%= wine.name %></h1>
+<p class="instructions">What type of wine is <%= wine.name %>?</p>
+<p class="instructions">Pick from your saved types or add a new type.</p>
+<p><%= wine.type %></p>
+<br>
+<br>
+
+<form id="new-type-form" action="/wines" method="POST">
+  <label>don't use yet</label>
+  <input type="text" name="name">
+  <input type="submit" value="Add">
+</form>
+
+<%- include('../partials/footer') %>
