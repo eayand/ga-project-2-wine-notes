@@ -13,15 +13,10 @@
     <div id="set-size">
         <nav>
             <% if (user) { %>
+                <a href="/wines/new" <%- title === 'Add a Wine' ? 'class="active"' : '' %>>Add a Wine</a>
+                <a href="/wines/index"	<%- title === 'My Wines' ? 'class="active"' : '' %>>My Wines</a>
+                <a href="/vendors/index" <%- title === 'My Vendors' ? 'class="active"' : '' %>>My Vendors</a>
                 <a href="/logout">LOG OUT</a>
             <% } %>
         </nav>
-        <main>
-
-
-    
-
-            
-               
-               
-            
+        <main>            

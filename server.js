@@ -17,6 +17,9 @@ const usersRouter = require('./routes/users')
 const homeRouter = require('./routes/home')
 const winesRouter = require('./routes/wines')
 const typesRouter = require('./routes/types')
+const makersRouter = require('./routes/makers')
+const notesRouter = require('./routes/notes')
+
 
 const app = express()
 
@@ -37,19 +40,21 @@ app.use(session({
   saveUninitialized: true
 }))
 
+app.use(passport.initialize())
+app.use(passport.session())
+
 app.use(function(req, res, next) {
   res.locals.user = req.user
   next()
 })
-
-app.use(passport.initialize())
-app.use(passport.session())
 
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/home', homeRouter)
 app.use('/wines', winesRouter)
 app.use('/', typesRouter)
+app.use('/', makersRouter)
+app.use('/', notesRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

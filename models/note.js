@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const noteSchema = new Schema({
-    date: {type: Date, required: true},
     vintage: {
       type: Number, 
       min: 1000, 

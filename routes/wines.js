@@ -3,11 +3,11 @@ const router = express.Router()
 const ensureLoggedIn = require('../config/ensureLoggedIn')
 const winesCtrl = require('../controllers/wines')
 
-router.get('/index', winesCtrl.index)
+router.get('/index', ensureLoggedIn, winesCtrl.index)
 
 router.get('/new', ensureLoggedIn, winesCtrl.new)
 
-router.get('/:id', winesCtrl.show)
+router.get('/:id', ensureLoggedIn, winesCtrl.show)
 
 router.post('/', ensureLoggedIn, winesCtrl.create)
 

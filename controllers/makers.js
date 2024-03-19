@@ -1,5 +1,5 @@
 const Wine = require('../models/wine')
-const Type = require('../models/type')
+const Maker = require('../models/maker')
 
 module.exports = {
     create,
@@ -11,41 +11,41 @@ module.exports = {
     req.body.name = req.body.name.trim()
     req.body.user = req.user._id
     try {
-          const type = await Type.create(req.body)
+          const maker = await Maker.create(req.body)
           const wine = await Wine.findById(req.params.id)
-        //   type.wines.push(req.params.id)
-        //   await type.save()
-          wine.type = type._id
+          maker.wines.push(req.params.id)
+          await maker.save()
+          wine.maker = maker._id
           await wine.save()
           res.redirect(`/wines/${wine._id}`)
     } catch (err) {
           console.log(err)
-          res.render(`/wines/${wine._id}/types`, { errorMsg: err.message })
+          res.render(`/wines/${wine._id}/makers`, { errorMsg: err.message })
     }
 }
 
  async function show(req, res) {
     const wine = await Wine.findById(req.params.id)
-    const types = await Type.find({})
-    res.render('types/show', {
-        title: 'Wine Type',
+    const makers = await Maker.find({})
+    res.render('makers/show', {
+        title: 'Wine Maker',
         errorMsg: '',
         wine,
-        types,
+        makers,
     })
 }
 
 async function associate(req, res) {
     try {
         const wine = await Wine.findById(req.params.id)
-        const type = req.body._id
-        wine.type = type
+        const maker = req.body._id
+        wine.maker = maker
         await wine.save()
-        // type.wines.push(wine)
-        // await type.save()
+        // maker.wines.push(wine)
+        // await maker.save()
         res.redirect(`/wines/${wine._id}`)
     } catch (err) {
         console.log(err)
-        res.render(`/wines/${wine._id}/types`, { errorMsg: err.message })
+        res.render(`/wines/${wine._id}/makers`, { errorMsg: err.message })
     }
 }

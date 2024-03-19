@@ -1,5 +1,5 @@
 const Wine = require('../models/wine')
-const User = require('../models/user')
+// const User = require('../models/user')
 
 module.exports = {
       new: newWine, 
@@ -20,9 +20,9 @@ async function create(req, res) {
       req.body.user = req.user._id
       try {
             const wine = await Wine.create(req.body)
-            const user = await User.findById(req.user._id)
-            await user.wines.push(wine._id)
-            await user.save()
+            // const user = await User.findById(req.user._id)
+            // await user.wines.push(wine._id)
+            // await user.save()
             res.redirect(`/wines/${wine._id}`, {title: wine.name, wine} )
       } catch (err) {
             console.log(err)
@@ -31,7 +31,7 @@ async function create(req, res) {
 }
 
  async function show(req, res) {
-      const wine = await Wine.findById(req.params.id).populate('type') //need to add maker, tags, vendors, notes 
+      const wine = await Wine.findById(req.params.id).populate('type').populate('maker') //need to add tags, vendors, notes 
       res.render('wines/show', {title: wine.name, wine})
  }
 

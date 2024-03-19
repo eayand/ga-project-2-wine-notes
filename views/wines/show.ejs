@@ -26,7 +26,7 @@
 <section>
     <div class="label-d">
         <p class="label-p">Maker</p>
-        <button>Edit</button>
+        <a href="/wines/<%= wine._id %>/makers"><button>Edit</button></a>
     </div>
     <div class="value-d">
         <% if (wine.maker) { %> 
@@ -65,7 +65,8 @@
 <section>
     <div class="label-d">
         <p class="label-p">Notes</p>
-        <button>New Note</button>
+        <a href="/wines/<%= wine._id %>/notes/new"><button>New Note</button></a>
+
         <!-- each note should have an edit button, you can delete from edit page too -->
     </div>
     <div class="value-d">
