@@ -6,8 +6,7 @@ const noteSchema = new Schema({
       type: Number, 
       max: new Date().getFullYear() 
     },
-    rating: {type: Number, min: 1, max: 5, 
-    },
+    rating: {type: Number, min: 1, max: 5, },
     body: String,
     wine: {type: Schema.Types.ObjectId, ref: 'Wine'},
     user: {type: Schema.Types.ObjectId, ref: 'User', required: true}

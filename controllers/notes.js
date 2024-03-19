@@ -4,6 +4,8 @@ const Note = require('../models/note')
 module.exports = {
     new: newNote,
     create,
+    edit,
+    update,
  }
 
  async function newNote(req, res) {
@@ -25,28 +27,22 @@ module.exports = {
     }
 }
 
-//  async function show(req, res) {
-//     const wine = await Wine.findById(req.params.id)
-//     const types = await Type.find({})
-//     res.render('types/show', {
-//         title: 'Wine Type',
-//         errorMsg: '',
-//         wine,
-//         types,
-//     })
-// }
+async function edit(req, res) {
+    const note = await Note.findById(req.params.id)
+    res.render('notes/edit', { title: 'Edit Your Note', note})
+}
 
-// async function associate(req, res) {
-//     try {
-//         const wine = await Wine.findById(req.params.id)
-//         const type = req.body._id
-//         wine.type = type
-//         await wine.save()
-//         // type.wines.push(wine)
-//         // await type.save()
-//         res.redirect(`/wines/${wine._id}`)
-//     } catch (err) {
-//         console.log(err)
-//         res.render(`/wines/${wine._id}/types`, { errorMsg: err.message })
-//     }
-// }
+async function update(req, res) {
+    const note = await Note.findById(req.params.id)
+    note.vintage = req.body.vintage
+    note.rating = req.body.rating
+    note.body = req.body.body
+    console.log(note)
+    try {
+        await note.save()
+        res.redirect(`/wines/${note.wine}`)
+    } catch (err) {
+        console.log(err)
+        res.render('notes/edit', { errorMsg: err.message })
+    }
+}

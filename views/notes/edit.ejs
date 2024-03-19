@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+
+<h2>My Thoughts on <%= note.wine.name %></h2>
+
+<form id="edit-note-form" action="/notes/<%= note._id %>?_method=PUT" method="POST">
+
+    <label>Vintage</label>
+    <select name="vintage">
+        <% let year = new Date().getFullYear() %> 
+        <%-  `<option value="${note.vintage}">${note.vintage}</option>` %>
+        <option value="unknown">unknown</option>
+        <% for (let i = 0; i < 100; i++) { %>
+            <%- `<option value="${year - i}">${year - i}</option>` %>
+        <% } %>
+    </select>
+  
+    <label>My Rating</label>
+    <input type="range" name="rating" min="1" max="5" value="<%=note.rating%>">
+
+    <label>Notes</label>
+    <input type="text" name="body" value="<%= note.body %>">
+
+    <input type="submit" value="Save Note">
+
+</form>
+
+<%- include('../partials/footer') %>

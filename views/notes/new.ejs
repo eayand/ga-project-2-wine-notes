@@ -10,7 +10,7 @@
         <% let year = new Date().getFullYear() %> 
         <%-  `<option value="${year}">${year}</option>` %>
         <%-  `<option value="unknown">unknown</option>` %>
-        <%    for (let i = 1; i < 100; i++) { %>
+        <%    for (let i = 1; i < 101; i++) { %>
         <%-  `<option value="${year - i}">${year - i}</option>` %>
         <% } %>
     </select>
@@ -19,8 +19,10 @@
     <input type="range" name="rating" min="1" max="5">
 
     <label>Notes</label>
-    <textarea name="body"></textarea>
+    <input type="text" name="body">
 
     <input type="submit" value="Save Note">
 
 </form>
+
+<%- include('../partials/footer') %>

@@ -76,6 +76,7 @@
                 <div class="date">
                     <%= n.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
                 </div>
+                <a href="<%- `/notes/${n._id}/edit` %>"><button>Edit</button></a>
                 <div class="updated">
                     <%= n.updatedAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
                 </div>
