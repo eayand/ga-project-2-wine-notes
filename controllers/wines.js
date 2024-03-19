@@ -1,5 +1,5 @@
 const Wine = require('../models/wine')
-// const User = require('../models/user')
+const Note = require('../models/note')
 
 module.exports = {
       new: newWine, 
@@ -31,8 +31,9 @@ async function create(req, res) {
 }
 
  async function show(req, res) {
-      const wine = await Wine.findById(req.params.id).populate('type').populate('maker') //need to add tags, vendors, notes 
-      res.render('wines/show', {title: wine.name, wine})
+      const wine = await Wine.findById(req.params.id).populate('type').populate('maker') //need to add tags, vendors
+      const notes = await Note.find({ 'wine': wine._id })
+      res.render('wines/show', {title: wine.name, wine, notes})
  }
 
 async function index(req, res) {
