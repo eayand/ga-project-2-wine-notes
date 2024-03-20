@@ -1,9 +1,15 @@
 <%- include('../partials/header') %>
 
 <h2><%= title %></h2>
-<a href="/wines/new"><button>Add a Wine</button></a>
+<!-- <a href="/wines/new"><button>Add a Wine</button></a>
 <br>
-<br>
+<br> -->
+
+<form id="new-wine-form-at-index" action="/wines" method="POST">
+    <label>Create New Wine: </label>
+    <input type="text" name="name">
+    <input type="submit" value="Add">
+  </form>
 
 <table id="wine-list" class="index-table">
     <thead>
@@ -12,6 +18,7 @@
           <th>Type</th>
           <th>Maker</th>
           <th>Vendors</th>
+          <th>Latest Note</th>
         </tr>
     </thead>
     <tbody>
@@ -40,6 +47,17 @@
                     <% w.vendors.forEach(function(v) {%>
                         <% if (v.name) { %>
                             <a href="/vendors/<%= v._id%>"><button><%= v.name %></button></a>
+                        <% } %>
+                    <% }) %>
+                
+                <% } %>
+            </td>
+
+            <td>
+                <% if (w.notes) { %> 
+                    <% w.notes.forEach(function(n) {%>
+                        <% if (n.createdAt) { %>
+                            <p><%= n.createdAt %></button></p>
                         <% } %>
                     <% }) %>
                 

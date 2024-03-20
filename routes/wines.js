@@ -5,7 +5,7 @@ const winesCtrl = require('../controllers/wines')
 
 router.get('/index', ensureLoggedIn, winesCtrl.index)
 
-router.get('/new', ensureLoggedIn, winesCtrl.new)
+// router.get('/new', ensureLoggedIn, winesCtrl.new)
 
 router.get('/:id', ensureLoggedIn, winesCtrl.show)
 

@@ -57,6 +57,7 @@ async function warn(req, res) {
 async function deleteNote(req, res) {
     const note = await Note.findById({ '_id': req.params.id })
     if (!note) return res.redirect('/wines/index')
+    const wineId = note.wine
     await Note.deleteOne({ '_id': req.params.id})
-    res.redirect('/wines/index')
+    res.redirect(`/wines/${wineId}`)
   }
