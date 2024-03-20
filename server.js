@@ -19,6 +19,7 @@ const winesRouter = require('./routes/wines')
 const typesRouter = require('./routes/types')
 const makersRouter = require('./routes/makers')
 const notesRouter = require('./routes/notes')
+const vendorsRouter = require('./routes/vendors')
 
 
 const app = express()
@@ -55,6 +56,7 @@ app.use('/wines', winesRouter)
 app.use('/', typesRouter)
 app.use('/', makersRouter)
 app.use('/', notesRouter)
+app.use('/', vendorsRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

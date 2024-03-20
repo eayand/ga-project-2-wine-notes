@@ -38,11 +38,11 @@
 <section>
     <div class="label-d">
         <p class="label-p">Tags</p>
-        <button>Add</button>
+        <button>Edit</button>
         <!-- make divs for each one and a delete button for each -->
     </div>
     <div class="value-d">
-        <% if (wine.tags) { %> 
+        <% if (wine.tags.length) { %> 
             <p class="value-p"><%= wine.tags %></p> 
             <!-- probably need a for each here -->
         <% } %>
@@ -52,12 +52,17 @@
 <section>
     <div class="label-d">
         <p class="label-p">Vendors</p>
-        <button>Add</button>
+        <a href="/wines/<%= wine._id %>/vendors"><button>Edit</button></a>
         <!-- make divs for each one and a delete button for each -->
     </div>
     <div class="value-d">
-        <% if (wine.vendors) { %> 
-            <p class="value-p"><%= wine.vendors %></p>
+        <% if (wine.vendors.length) { %> 
+            <% vendors.forEach(function(v) { %>
+                <div class="vendor">
+            <p class="value-p"><%= v.name %></p>
+            <a href=""></a>
+                </div>
+        <% }) %>
         <% } %>
     </div>
 </section><br>
@@ -95,8 +100,7 @@
     </div>
 </section><br>
 
-<form action="/wines/<%= wine._id %>?_method=DELETE" method="POST">
-<button type="submit">Delete This Wine</button>
+<a href="/wines/<%= wine._id %>/delete"><button>Delete This Wine</button></a>
 </form>
 
 <%- include('../partials/footer') %>

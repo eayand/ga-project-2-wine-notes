@@ -1,0 +1,12 @@
+<%- include('../partials/header') %>
+
+<h2>Delete <%= wine.name %> and all its notes?</h2>
+
+
+<form action="/wines/<%= wine._id %>?_method=DELETE" method="POST">
+<button type="submit">Delete</button>
+</form>
+
+<a href="/wines/<%= wine._id %>"><button>Cancel</button></a>
+
+<%- include('../partials/footer') %>

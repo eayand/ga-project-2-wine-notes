@@ -92,6 +92,9 @@ section {
   font-family: "Raleway", sans-serif;
 }
 
+.vendor {
+  outline: 2px solid black;
+}
 
 /* 
 .kite-one-regular {

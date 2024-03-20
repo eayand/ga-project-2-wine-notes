@@ -11,6 +11,8 @@ router.get('/:id', ensureLoggedIn, winesCtrl.show)
 
 router.post('/', ensureLoggedIn, winesCtrl.create)
 
+router.get('/:id/delete', ensureLoggedIn, winesCtrl.warn)
+
 router.delete('/:id', ensureLoggedIn, winesCtrl.delete)
 
 module.exports = router

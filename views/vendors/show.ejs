@@ -1,0 +1,34 @@
+<%- include('../partials/header') %>
+
+<h1><%= wine.name %> can be found at:</h1>
+
+<% if (wineVendors.length) { %> 
+    <% wineVendors.forEach(function(v) { %>
+    <div class="vendor">
+        <div>
+            <p><%= v.name %></p>
+        </div>
+        <div>
+            <a href="/wines/<%= wine._id %>/vendors/<%= v._id %>/remove"><button>Remove</button></a>
+        </div>
+    </div>
+    <% }) %>
+<% } %>
+
+<form id="new-vendor-form" action="/wines/<%= wine._id %>/vendors/new" method="POST">
+  <label>Create New Vendor: </label>
+  <input type="text" name="name">
+  <input type="submit" value="Add">
+</form>
+
+<form id="add-saved-vendor" action="/wines/<%= wine._id %>/vendors" method="POST">
+    <select name="vendor-id">
+      <option value="blank"></option>
+        <% vendors.forEach(function(v) { %>
+            <option value="<%= v._id %>"><%= v.name %></option>
+        <%}) %>
+    </select>
+    <button type="submit">Select</button>
+</form>
+
+<%- include('../partials/footer') %>
