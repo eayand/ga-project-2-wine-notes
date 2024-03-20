@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+
+<h2><%= title %></h2>
+<!-- <a href="/vendors/new"><button>Add a Vendor</button></a>
+<br>
+<br> -->
+<form id="new-vendor-form-at-index" action="/vendors" method="POST">
+    <label>Create New Vendor: </label>
+    <input type="text" name="name">
+    <input type="submit" value="Add">
+  </form>
+
+
+<% vendors.forEach(function(v) { %>
+    <a href="/vendors/<%= v._id %>"><button><%= v.name %></button></a>
+    <% }) %>
+
+<%- include('../partials/footer') %>

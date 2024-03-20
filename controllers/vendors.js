@@ -3,12 +3,26 @@ const Vendor = require('../models/vendor')
 
 module.exports = {
     create,
+    createAt,
+    index,
     show,
     associate,
     remove,
  }
 
  async function create(req, res) {
+    req.body.name = req.body.name.trim()
+    req.body.user = req.user._id
+    try {
+        const vendor = await Vendor.create(req.body)
+        res.redirect('/vendors/index')
+    } catch (err) {
+        console.log(err)
+        res.render('vendors/index', { errorMsg: err.message })
+    }
+ }
+
+ async function createAt(req, res) {
     req.body.name = req.body.name.trim()
     req.body.user = req.user._id
     try {
@@ -21,8 +35,16 @@ module.exports = {
           res.redirect(`/wines/${wine._id}`)
     } catch (err) {
           console.log(err)
-          res.render('vendors/show', { errorMsg: err.message, title: 'Error', vendor, wine })
+          res.render('vendors/show', { errorMsg: err.message })
     }
+}
+
+async function index(req, res) {
+    const vendors = await Vendor.find({ 'user': req.user._id })
+     res.render('vendors/index', {
+           title: 'My Vendor List', 
+           vendors
+     })
 }
 
  async function show(req, res) {
@@ -41,15 +63,18 @@ module.exports = {
 async function associate(req, res) {
     try {
         const wine = await Wine.findById(req.params.id)
-        const vendor = req.body._id
-        wine.vendors.push = vendor
+        const vendor = await Vendor.findById(req.body.vendorId)
+        console.log(wine, vendor)
+        wine.vendors.push(vendor)
         await wine.save()
         vendor.wines.push(wine)
         await vendor.save()
         res.redirect(`/wines/${wine._id}/vendors`)
     } catch (err) {
         console.log(err)
-        res.render(`/wines/${wine._id}/vendors`, { errorMsg: err.message, title: 'Error' })
+        const wine = await Wine.findById(req.params.id)
+        const vendor = req.body._id
+        res.render('vendors/show', { errorMsg: err.message, title: 'Error', wine, vendor })
     }
 }
 
@@ -66,6 +91,10 @@ async function remove(req, res) {
         res.redirect(`/wines/${wine._id}/vendors`)
     } catch (err) {
         console.log(err)
+        const wine = await Wine.findById(req.params.id)
+        const vendor = await Vendor.findById(req.params.vid)
+        const wineRef = vendor.wines.indexOf(wine)
+        const vendorRef = wine.vendors.indexOf(vendor)
         res.render('vendors/show', { errorMsg: err.message, title: 'Error' })
     }
 }

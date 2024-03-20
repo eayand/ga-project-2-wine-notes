@@ -22,9 +22,6 @@ async function create(req, res) {
       req.body.user = req.user._id
       try {
             const wine = await Wine.create(req.body)
-            // const user = await User.findById(req.user._id)
-            // await user.wines.push(wine._id)
-            // await user.save()
             res.redirect(`/wines/${wine._id}`, {'title': wine.name, wine})
       } catch (err) {
             console.log(err)
