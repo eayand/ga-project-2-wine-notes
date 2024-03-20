@@ -15,4 +15,8 @@ router.get('/notes/:id/edit', ensureLoggedIn, notesCtrl.edit)
 
 router.put('/notes/:id', ensureLoggedIn, notesCtrl.update)
 
+router.get('/notes/:id/delete', ensureLoggedIn, notesCtrl.warn)
+
+router.delete('/notes/:id', ensureLoggedIn, notesCtrl.delete)
+
 module.exports = router

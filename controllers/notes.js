@@ -6,6 +6,8 @@ module.exports = {
     create,
     edit,
     update,
+    warn,
+    delete: deleteNote,
  }
 
  async function newNote(req, res) {
@@ -46,3 +48,15 @@ async function update(req, res) {
         res.render('notes/edit', { errorMsg: err.message })
     }
 }
+
+async function warn(req, res) {
+    const note = await Note.findById(req.params.id)
+    res.render('notes/warning', {title: 'Confirm Delete?', note})
+}
+
+async function deleteNote(req, res) {
+    const note = await Note.findById({ '_id': req.params.id })
+    if (!note) return res.redirect('/wines/index')
+    await Note.deleteOne({ '_id': req.params.id})
+    res.redirect('/wines/index')
+  }

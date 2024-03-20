@@ -1,0 +1,12 @@
+<%- include('../partials/header') %>
+
+<h2>Permanently delete this note?</h2>
+
+
+<form action="/notes/<%= note._id %>?_method=DELETE" method="POST">
+<button type="submit">Delete</button>
+</form>
+
+<a href="/notes/<%= note._id %>/edit"><button>Cancel</button></a>
+
+<%- include('../partials/footer') %>
