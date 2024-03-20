@@ -13,7 +13,7 @@
 </form>
 
 <form id="add-saved-maker" action="/wines/<%= wine._id %>/makers" method="POST">
-  <select name="maker-id">
+  <select name="makerId">
     <option value="blank"></option>
     <%- makers.map(m => 
       `<option value="${m._id}">${m.name}</option>`

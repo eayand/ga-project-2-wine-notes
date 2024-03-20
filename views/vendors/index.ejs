@@ -10,9 +10,33 @@
     <input type="submit" value="Add">
   </form>
 
-
-<% vendors.forEach(function(v) { %>
-    <a href="/vendors/<%= v._id %>"><button><%= v.name %></button></a>
-    <% }) %>
+    <table id="vendor-list" class="index-table">
+      <thead>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Thoughts</th>
+            <th>Wines</th>
+          </tr>
+      </thead>
+      <tbody>
+          <% vendors.forEach(function(v) { %>
+              <tr>
+              <td><a href="/vendors/<%= v._id %>"><button><%= v.name %></button></a></td>
+              <td><%= v.address %></td>
+              <td><%= v.thoughts %></td>
+              <td>
+                <% if (v.wines) { %> 
+                    <% v.wines.forEach(function(w) {%>
+                        <% if (w.name) { %>
+                            <a href="/wines/<%= w._id%>"><button><%= w.name %></button></a>
+                        <% } %>
+                    <% }) %>
+                <% } %>
+              </td>
+          </tr>
+          <% }) %>
+      </tbody>
+  </table>
 
 <%- include('../partials/footer') %>

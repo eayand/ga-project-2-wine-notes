@@ -6,6 +6,9 @@ module.exports = {
     createAt,
     index,
     show,
+    edit,
+    update,
+    showAt,
     associate,
     remove,
  }
@@ -32,26 +35,50 @@ module.exports = {
           await vendor.save()
           wine.vendors.push(vendor)
           await wine.save()
-          res.redirect(`/wines/${wine._id}`)
+          res.redirect(`/wines/${wine._id}/vendors`)
     } catch (err) {
           console.log(err)
-          res.render('vendors/show', { errorMsg: err.message })
+          res.render('vendors/showAt', { errorMsg: err.message })
     }
 }
 
 async function index(req, res) {
-    const vendors = await Vendor.find({ 'user': req.user._id })
-     res.render('vendors/index', {
-           title: 'My Vendor List', 
-           vendors
-     })
+    const vendors = await Vendor.find({ 'user': req.user._id }).populate('wines').sort('name')
+        res.render('vendors/index', {
+            title: 'My Vendor List', 
+            vendors
+    })
 }
 
- async function show(req, res) {
+async function show(req, res) {
+    const vendor = await Vendor.findById(req.params.id)
+    res.render('vendors/show', {title: vendor.name, vendor})
+}
+
+async function edit(req, res) {
+    const vendor = await Vendor.findById(req.params.id)
+    res.render('vendors/edit', {title: 'Edit Vendor', vendor})
+}
+
+async function update(req, res) {
+    const vendor = await Vendor.findById(req.params.id)
+    vendor.name = req.body.name
+    vendor.address = req.body.address
+    vendor.thoughts = req.body.thoughts
+    try {
+        await vendor.save()
+        res.redirect(`${vendor._id}`)
+    } catch (err) {
+        console.log(err)
+        res.render('vendors/edit', { errorMsg: err.message })
+    }
+}
+
+ async function showAt(req, res) {
     const wine = await Wine.findById(req.params.id)
     const wineVendors = await Vendor.find({ 'wines': wine })
     const vendors = await Vendor.find({ 'user': req.user._id})
-    res.render('vendors/show', {
+    res.render('vendors/showAt', {
         title: 'Vendors',
         errorMsg: '',
         wine,
@@ -64,7 +91,6 @@ async function associate(req, res) {
     try {
         const wine = await Wine.findById(req.params.id)
         const vendor = await Vendor.findById(req.body.vendorId)
-        console.log(wine, vendor)
         wine.vendors.push(vendor)
         await wine.save()
         vendor.wines.push(wine)
@@ -74,9 +100,29 @@ async function associate(req, res) {
         console.log(err)
         const wine = await Wine.findById(req.params.id)
         const vendor = req.body._id
-        res.render('vendors/show', { errorMsg: err.message, title: 'Error', wine, vendor })
+        res.render('vendors/showAt', { errorMsg: err.message, title: 'Error', wine, vendor })
     }
 }
+
+//THIS NEEDS TO BE DEBUGGED, THEN CHANGE TO THIS TO AVOID DOUBLE ADDS
+// async function associate(req, res) {
+//     try {
+//         const wine = await Wine.find({ _id: req.params.id, vendors: {$nin: [req.body.vendorId]} })
+//         if (!wine) return res.redirect(`/wines/${req.params.id}/vendors`)
+//         const vendor = await Vendor.findById(req.body.vendorId)
+//         wine.vendors.push(vendor)
+//         await wine.save()
+//         vendor.wines.push(wine)
+//         await vendor.save()
+//         res.redirect(`/wines/${wine._id}/vendors`)
+//     } catch (err) {
+//         console.log(err)
+//         const wine = await Wine.findById(req.params.id)
+//         const vendor = req.body._id
+//         res.render('vendors/show', { errorMsg: err.message, title: 'Error', wine, vendor })
+//     }
+// }
+
 
 async function remove(req, res) {
     try {

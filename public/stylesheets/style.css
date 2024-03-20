@@ -96,6 +96,10 @@ section {
   outline: 2px solid black;
 }
 
+.index-table td {
+  outline: 2px solid black;
+}
+
 /* 
 .kite-one-regular {
   font-family: "Kite One", sans-serif;

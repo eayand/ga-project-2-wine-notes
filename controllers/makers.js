@@ -13,14 +13,13 @@ module.exports = {
     try {
           const maker = await Maker.create(req.body)
           const wine = await Wine.findById(req.params.id)
-          maker.wines.push(req.params.id)
           await maker.save()
-          wine.maker = maker._id
+          wine.maker = maker
           await wine.save()
           res.redirect(`/wines/${wine._id}`)
     } catch (err) {
           console.log(err)
-          res.render(`/wines/${wine._id}/makers`, { errorMsg: err.message })
+          res.render('wines/show', { errorMsg: err.message })
     }
 }
 
@@ -38,7 +37,7 @@ module.exports = {
 async function associate(req, res) {
     try {
         const wine = await Wine.findById(req.params.id)
-        const maker = req.body._id
+        const maker = await Maker.findById(req.body.makerId)
         wine.maker = maker
         await wine.save()
         // maker.wines.push(wine)

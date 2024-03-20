@@ -38,7 +38,7 @@ module.exports = {
 async function associate(req, res) {
     try {
         const wine = await Wine.findById(req.params.id)
-        const type = req.body._id
+        const type = await Type.findById(req.body.typeId)
         wine.type = type
         await wine.save()
         // type.wines.push(wine)

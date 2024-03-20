@@ -1,34 +1,34 @@
 <%- include('../partials/header') %>
 
-<h1><%= wine.name %> can be found at:</h1>
+<h1><%= vendor.name %></h1>
 
-<% if (wineVendors.length) { %> 
-    <% wineVendors.forEach(function(v) { %>
-    <div class="vendor">
-        <div>
-            <p><%= v.name %></p>
-        </div>
-        <div>
-            <a href="/wines/<%= wine._id %>/vendors/<%= v._id %>/remove"><button>Remove</button></a>
-        </div>
+<a href="/vendors/<%= vendor._id %>/edit"><button>Edit Vendor</button></a>
+
+
+<section>
+    <div class="label-d">
+        <p class="label-p">Address</p>
     </div>
-    <% }) %>
-<% } %>
+    <div class="value-d">
+        <% if (vendor.address) { %> 
+            <p class="value-p"><%= vendor.address %></p>
+            <% } %>
+        </div>
+</section><br>
 
-<form id="new-vendor-form" action="/wines/<%= wine._id %>/vendors" method="POST">
-  <label>Create New Vendor: </label>
-  <input type="text" name="name">
-  <input type="submit" value="Add">
-</form>
+<section>
+    <div class="label-d">
+        <p class="label-p">Thoughts</p>
+    </div>
+    <div class="value-d">
+        <% if (vendor.thoughts) { %> 
+            <p class="value-p"><%= vendor.thoughts %></p>
+            <% } %>
+        </div>
+</section><br>
 
-<form id="add-saved-vendor" action="/wines/<%= wine._id %>/vendors/associate" method="POST">
-    <select name="vendorId">
-      <option value="blank"></option>
-        <% vendors.forEach(function(v) { %>
-            <option value="<%= v._id %>"><%= v.name %></option>
-        <%}) %>
-    </select>
-    <button type="submit">Select</button>
-</form>
+    
+    <%- include('../partials/footer') %>
 
-<%- include('../partials/footer') %>
+
+
