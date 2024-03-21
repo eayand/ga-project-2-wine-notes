@@ -18,8 +18,9 @@ body {
 }
 
 main {
-  min-width: 70vw;
+  max-width: 60vw;
 }
+/* make this a media querry for over a certain size only */
 
 .kiteone {
   font-family: "Kite One";
@@ -54,8 +55,20 @@ button {
   border-radius: 10px;
 }
 
+input {
+  background-color: #dcc9d4;
+  color: #44052b;
+  border: solid #44052b;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
 .light-button {
   background-color: #dcc9d4;
+}
+
+.large-button {
+  font-size: 1rem;
 }
 
 button:hover {
@@ -115,7 +128,7 @@ nav > a.active {
 
 #wine-type, #wine-maker {
   /* border: solid #44052b; */
-  margin: 10px;
+  margin: 10px 10px 0 10px;
   padding: 0 1vw;
 }
 
@@ -179,6 +192,10 @@ nav > a.active {
   margin: auto;
 }
 
+.pad-top {
+  margin-top: .5rem;
+}
+
 .button-label {
   display: flex;
   justify-content: flex-start;
@@ -206,9 +223,16 @@ nav > a.active {
   margin: 0 auto;
 }
 
+.notes-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .note {
   border: solid black;
   padding: .5rem;
+  margin: 0 1rem 1rem 1rem;
+  max-width: 400px;
   /* display: flex; */
 }
 
@@ -218,23 +242,41 @@ nav > a.active {
   /* margin: .5rem .5rem 0 .5rem; */
 }
 
+.note-mid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
 .updated {
   display: flex;
   justify-content: flex-start;
 }
 
-
-
-
-
-.instructions {
+/* .instructions {
   font-family: "Raleway", sans-serif;
-}
+} */
 
 .index-table td {
   outline: 2px solid black;
 }
 
+.index-header {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#new-wine-form-at-index {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+  margin: auto 0;
+}
+
+#new-wine-form-at-index input {
+  height: 1.5rem;
+}
 
 
 

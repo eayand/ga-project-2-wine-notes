@@ -35,8 +35,7 @@
                 <% } %>
             </div>
         </div>
-</section><br>
-
+</section>
 
 <section>
     <div class="label-d, button-label">
@@ -63,11 +62,10 @@
         <p class="label-p, raleway-bold">Notes</p>
         <a href="/wines/<%= wine._id %>/notes/new"><button class="multi-button">New Note</button></a>
     </div>
-    <div class="value-d">
+    <div class="notes-container">
         <% if (notes) { %> 
             <% notes.forEach(function(n) { %>
-            <div class="note">
-
+            <div class="note value-d">
                 <div class="note-header">
                     <div class="date, raleway">
                         <% const created = n.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
@@ -82,25 +80,26 @@
                 </div>
                 <% } %>
 
-                <div class="vintage">
-                    Vintage: <%= n.vintage %>
-                </div>
+                <div class="note-mid">
+                    <div class="vintage">
+                        <span class="raleway">Vintage: </span><%= n.vintage %>
+                    </div>
 
-                <div class="rating">
-                    <%= n.rating %>
+                    <div class="rating">
+                        <span class="raleway">Rating: </span><%= n.rating %>
+                    </div>
                 </div>
 
                 <div class="body">
                     <%= n.body %>
                 </div>
-
             </div>
             <% }) %>
         <% } %>
     </div>
 </section><br>
 
-<a href="/wines/<%= wine._id %>/delete"><button>Delete This Wine</button></a>
+<a href="/wines/<%= wine._id %>/delete"><button class="large-button">Delete This Wine</button></a>
 </form>
 
 <%- include('../partials/footer') %>

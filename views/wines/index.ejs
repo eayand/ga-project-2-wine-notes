@@ -1,15 +1,14 @@
 <%- include('../partials/header') %>
 
-<h2><%= title %></h2>
-<!-- <a href="/wines/new"><button>Add a Wine</button></a>
-<br>
-<br> -->
-
-<form id="new-wine-form-at-index" action="/wines" method="POST">
-    <label>Create New Wine: </label>
-    <input type="text" name="name">
-    <input type="submit" value="Add">
-  </form>
+    <div class="index-header">
+        <h2><%= title %></h2>
+        <form id="new-wine-form-at-index" action="/wines" method="POST">
+            <label class="raleway-bold">Create New Wine: </label><br>
+            <input type="text" name="name">
+         <input type="submit" value="Add">
+        </form>
+    </div>
+  <br>
 
 <table id="wine-list" class="index-table">
     <thead>
@@ -55,7 +54,7 @@
 
             <td>
                 <% if (w.createdAt) { %> 
-                <p><%= w.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %></p>
+                <p class="raleway"><%= w.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %></p>
                 <% } %>
             </td>
 
