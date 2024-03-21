@@ -18,7 +18,7 @@
           <th>Type</th>
           <th>Maker</th>
           <th>Vendors</th>
-          <th>Latest Note</th>
+          <th>Added</th>
         </tr>
     </thead>
     <tbody>
@@ -54,13 +54,8 @@
             </td>
 
             <td>
-                <% if (w.notes) { %> 
-                    <% w.notes.forEach(function(n) {%>
-                        <% if (n.createdAt) { %>
-                            <p><%= n.createdAt %></button></p>
-                        <% } %>
-                    <% }) %>
-                
+                <% if (w.createdAt) { %> 
+                <p><%= w.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %></p>
                 <% } %>
             </td>
 

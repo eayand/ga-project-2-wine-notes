@@ -2,37 +2,48 @@
 
 <h1><%= wine.name %></h1>
 
-<section>
-    <div class="label-d">
-        <p class="label-p">Type</p>
-        <a href="/wines/<%= wine._id %>/types"><button>Edit</button></a>
+<section id="wine-top">
+    
+    <div id="wine-type">
+        <div class="label-d">
+            <p class="label-p raleway-bold">Type</p>
+            <a href="/wines/<%= wine._id %>/types"><button>Edit</button></a>
+        </div>
+        <div class="value-d">
+            <% if (wine.type) { %> 
+                <p class="value-p"><%= wine.type.name %></p>
+            <% } %>
+        </div>
     </div>
-    <div class="value-d">
-        <% if (wine.type) { %> 
-            <p class="value-p"><%= wine.type.name %></p>
-        <% } %>
-    </div>
-</section><br>
 
-<section>
-    <div class="label-d">
-        <p class="label-p">My Rating</p>
-    </div>
-    <div class="value-d">
-        <p class="value-p">(calculation)</p>
-    </div>
-</section><br>
+    <div id="wine-maker">
+        <div class="label-d">
+            <p class="label-p raleway-bold">Maker</p>
+            <a href="/wines/<%= wine._id %>/makers"><button>Edit</button></a>
+        </div>
+        <div class="value-d">
+            <% if (wine.maker) { %> 
+                <p class="value-p"><%= wine.maker.name %></p>
+                <% } %>
+            </div>
+        </div>
+        
 
-<section>
-    <div class="label-d">
-        <p class="label-p">Maker</p>
-        <a href="/wines/<%= wine._id %>/makers"><button>Edit</button></a>
-    </div>
-    <div class="value-d">
-        <% if (wine.maker) { %> 
-            <p class="value-p"><%= wine.maker.name %></p>
-        <% } %>
-    </div>
+        <div id="wine-rating">
+
+            <div class="label-d">
+                <p class="label-p raleway-bold">My Rating</p>
+            </div>
+
+            <div class="value-d" id="avg-rating">
+                <% if (rating) { %> 
+                    <p class="value-p"><%= rating %></p>
+                <% } %>
+            </div>
+
+        </div>
+
+
 </section><br>
 
 <section>

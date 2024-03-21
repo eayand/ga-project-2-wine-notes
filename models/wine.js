@@ -6,7 +6,6 @@ const wineSchema = new Schema({
     type: {type: Schema.Types.ObjectId, ref: 'Type'},
     maker: {type: Schema.Types.ObjectId, ref: 'Maker'},
     tags: [{type: Schema.Types.ObjectId, ref: 'Tag'}],
-    // notes: [{type: Schema.Types.ObjectId, ref: 'Note'}],
     vendors: [{type: Schema.Types.ObjectId, ref: 'Vendor'}],
     user: {type: Schema.Types.ObjectId, ref: 'User', required: true},
 }, {

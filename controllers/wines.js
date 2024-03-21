@@ -33,7 +33,8 @@ async function create(req, res) {
       const wine = await Wine.findById(req.params.id).populate('type').populate('maker') //need to add tags, vendors
       const notes = await Note.find({ 'wine': wine })
       const vendors = await Vendor.find({ 'wines': wine })
-      res.render('wines/show', {title: wine.name, wine, notes, vendors})
+      const rating = (notes.reduce((acc, note) => acc + note.rating, 0)) / (notes.length)
+      res.render('wines/show', {title: wine.name, wine, notes, vendors, rating})
  }
 
 //  async function show(req, res) {
@@ -51,7 +52,6 @@ async function create(req, res) {
 
 async function index(req, res) {
       const wines = await Wine.find({ 'user': req.user._id }).populate('type').populate('maker').populate('vendors').sort('name')
-      console.log(wines)
       res.render('wines/index', {
             title: 'My Wine List', 
             wines

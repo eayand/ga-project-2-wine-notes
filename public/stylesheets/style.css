@@ -1,20 +1,66 @@
-/* * {
-  border: 2px solid black;
-} */
+* {
+  box-sizing: border-box;
+}
+
+/* 
+theme colors:
+mid red wine #44052b
+dark red wine 
+light red wine #be9ab0
+light white wine #f3f0cf
+*/
+
 
 body {
-  /* padding: 50px; */
   margin: 0;
   font: 14px "Kite One","Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #be9ab0;
 }
 
+main {
+  min-width: 80vw;
+}
+
+.kiteone {
+  font-family: "Kite One";
+}
+
+.raleway {
+  font-family: "Raleway", sans-serif;
+}
+
+.raleway-bold {
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+}
+
+a {
+  color: #44052b;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+}
+
+button {
+  background-color: #be9ab0;
+  color: #44052b;
+  border: solid #44052b;
+  border-radius: 10px;
+}
+
+button:hover {
+  color: white;
+  border-color: white;
+}
+
 nav {
-  width: 100%;
   height: 5vh;
   background-color: #a78399;
   color: black;
 }
+
 nav > a {
   margin: 20px;
   text-decoration: none;
@@ -32,49 +78,39 @@ nav > a.active {
   cursor: default;
 }
 
-/* 
-mid red wine #44052b
-dark red wine 
-light red wine #be9ab0
-light white wine #f3f0cf
-*/
-
-#set-size {
-  width: 600px;
-  margin: 0 auto;
-  box-sizing: border-box;
+#outer-limit {
+  padding: 10px;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+}
+
+#inner-limit {
+  margin: 0 auto;
+  justify-content: center;
   text-align: center;
-}
-
-/* p {
-  font-size: ;
-} */
-
-a {
-  color: #44052b;
-  text-decoration: none;
-}
-
-a:hover {
-  color: white;
 }
 
 section {
   border: 3px solid #44052b;
 }
 
-.value-d {
-  background-color: #dcc9d4;
-  min-width: 30vw;
-  min-height: 5vw;
+#wine-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  border: none;
+}
+
+#wine-type, #wine-maker {
+  border: solid #44052b;
+  margin: 1vw;
+  padding: 0 1vw;
 }
 
 .label-d {
-  padding-left: 2vw;
+  /* padding-left: 2vw; */
   display: flex;
+  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 0;
@@ -82,11 +118,54 @@ section {
 }
 
 .label-p {
+  flex-wrap: nowrap;
   text-align: left;
   font-weight: bold;
   margin-bottom: 0;
   padding-bottom: 0;
 }
+
+.value-d {
+  flex-wrap: nowrap;
+  background-color: #dcc9d4;
+  border-radius: 15px;
+  justify-content: center;
+}
+
+.value-p {
+  flex-wrap: nowrap;
+  border: 5px solid #dcc9d4;
+  border-radius: 15px;
+}
+
+#wine-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#avg-rating {
+  width: 2rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: solid black;
+}
+
+#avg-rating p {
+  text-align: center;
+  padding: 0;
+  margin: auto;
+}
+
+
+
+
+
 
 .instructions {
   font-family: "Raleway", sans-serif;
@@ -99,6 +178,22 @@ section {
 .index-table td {
   outline: 2px solid black;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* 
 .kite-one-regular {
@@ -132,8 +227,7 @@ section {
     "YTLC" 500;
 }  */
 
-
-
+/* 
 .barlow-thin {
   font-family: "Barlow", sans-serif;
   font-weight: 100;
@@ -240,4 +334,4 @@ section {
   font-family: "Barlow", sans-serif;
   font-weight: 900;
   font-style: italic;
-}
+} */
