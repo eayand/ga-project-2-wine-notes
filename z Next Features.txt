@@ -1,0 +1,14 @@
+wines/show
+Put this back right before Vendors section. Use multi class for this too.
+
+<section>
+    <div class="label-d">
+        <p class="label-p, raleway-bold">Tags</p>
+        <button>Edit</button>
+    </div>
+    <div class="value-d">
+        <% if (wine.tags.length) { %> 
+            <p class="value-p"><%= wine.tags %></p> 
+        <% } %>
+    </div>
+</section><br>

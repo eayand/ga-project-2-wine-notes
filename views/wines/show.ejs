@@ -4,7 +4,7 @@
 
 <section id="wine-top">
     <div id="wine-type">
-        <div class="label-d">
+        <div class="label-d button-label">
             <p class="label-p raleway-bold">Type</p>
             <a href="/wines/<%= wine._id %>/types"><button>Edit</button></a>
         </div>
@@ -15,7 +15,7 @@
         </div>
     </div>
     <div id="wine-maker">
-        <div class="label-d">
+        <div class="label-d button-label">
             <p class="label-p raleway-bold">Maker</p>
             <a href="/wines/<%= wine._id %>/makers"><button>Edit</button></a>
         </div>
@@ -38,27 +38,10 @@
 </section><br>
 
 
-
-
-
 <section>
-    <div class="label-d">
-        <p class="label-p, raleway-bold">Tags</p>
-        <button>Edit</button>
-        <!-- make divs for each one and a delete button for each -->
-    </div>
-    <div class="value-d">
-        <% if (wine.tags.length) { %> 
-            <p class="value-p"><%= wine.tags %></p> 
-            <!-- probably need a for each here -->
-        <% } %>
-    </div>
-</section><br>
-
-<section>
-    <div class="label-d">
+    <div class="label-d, button-label">
         <p class="label-p, raleway-bold">Vendors</p>
-        <a href="/wines/<%= wine._id %>/vendors"><button>Edit</button></a>
+        <a href="/wines/<%= wine._id %>/vendors"><button class="multi-button">Edit</button></a>
     </div>
     <div class="value-d, multi">
         <% if (wine.vendors.length) { %> 
@@ -76,11 +59,9 @@
 
 
 <section>
-    <div class="label-d">
-        <p class="label-p">Notes</p>
-        <a href="/wines/<%= wine._id %>/notes/new"><button>New Note</button></a>
-
-        
+    <div class="label-d button-label">
+        <p class="label-p, raleway-bold">Notes</p>
+        <a href="/wines/<%= wine._id %>/notes/new"><button class="multi-button">New Note</button></a>
     </div>
     <div class="value-d">
         <% if (notes) { %> 
@@ -89,17 +70,20 @@
 
                 <div class="note-header">
                     <div class="date, raleway">
+                        <% const created = n.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
                         <%= n.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
                     </div>
-                    <a href="<%- `/notes/${n._id}/edit` %>"><button>Edit</button></a>
+                    <a href="<%- `/notes/${n._id}/edit` %>"><button class="light-button">Edit</button></a>
                 </div>
-
-                <div class="updated, raleway">
+                <% const updated = n.updatedAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
+                <% if (updated !== created) {%>
+                <div class="updated raleway small">
                     updated <%= n.updatedAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
                 </div>
+                <% } %>
 
                 <div class="vintage">
-                    <%= n.vintage %>
+                    Vintage: <%= n.vintage %>
                 </div>
 
                 <div class="rating">
