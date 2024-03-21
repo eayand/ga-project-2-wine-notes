@@ -3,7 +3,6 @@
 <h1><%= wine.name %></h1>
 
 <section id="wine-top">
-    
     <div id="wine-type">
         <div class="label-d">
             <p class="label-p raleway-bold">Type</p>
@@ -15,7 +14,6 @@
             <% } %>
         </div>
     </div>
-
     <div id="wine-maker">
         <div class="label-d">
             <p class="label-p raleway-bold">Maker</p>
@@ -27,28 +25,25 @@
                 <% } %>
             </div>
         </div>
-        
-
         <div id="wine-rating">
-
-            <div class="label-d">
+            <div class="label-d" id="my-rating">
                 <p class="label-p raleway-bold">My Rating</p>
             </div>
-
             <div class="value-d" id="avg-rating">
                 <% if (rating) { %> 
                     <p class="value-p"><%= rating %></p>
                 <% } %>
             </div>
-
         </div>
-
-
 </section><br>
+
+
+
+
 
 <section>
     <div class="label-d">
-        <p class="label-p">Tags</p>
+        <p class="label-p, raleway-bold">Tags</p>
         <button>Edit</button>
         <!-- make divs for each one and a delete button for each -->
     </div>
@@ -62,11 +57,10 @@
 
 <section>
     <div class="label-d">
-        <p class="label-p">Vendors</p>
+        <p class="label-p, raleway-bold">Vendors</p>
         <a href="/wines/<%= wine._id %>/vendors"><button>Edit</button></a>
-        <!-- make divs for each one and a delete button for each -->
     </div>
-    <div class="value-d">
+    <div class="value-d, multi">
         <% if (wine.vendors.length) { %> 
             <% vendors.forEach(function(v) { %>
                 <div class="vendor">
@@ -78,33 +72,44 @@
     </div>
 </section><br>
 
+
+
+
 <section>
     <div class="label-d">
         <p class="label-p">Notes</p>
         <a href="/wines/<%= wine._id %>/notes/new"><button>New Note</button></a>
 
-        <!-- each note should have an edit button, you can delete from edit page too -->
+        
     </div>
     <div class="value-d">
         <% if (notes) { %> 
             <% notes.forEach(function(n) { %>
             <div class="note">
-                <div class="date">
-                    <%= n.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
+
+                <div class="note-header">
+                    <div class="date, raleway">
+                        <%= n.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
+                    </div>
+                    <a href="<%- `/notes/${n._id}/edit` %>"><button>Edit</button></a>
                 </div>
-                <a href="<%- `/notes/${n._id}/edit` %>"><button>Edit</button></a>
-                <div class="updated">
-                    <%= n.updatedAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
+
+                <div class="updated, raleway">
+                    updated <%= n.updatedAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
                 </div>
+
                 <div class="vintage">
                     <%= n.vintage %>
                 </div>
+
                 <div class="rating">
                     <%= n.rating %>
                 </div>
+
                 <div class="body">
                     <%= n.body %>
                 </div>
+
             </div>
             <% }) %>
         <% } %>

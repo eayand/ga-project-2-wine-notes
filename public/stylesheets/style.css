@@ -18,7 +18,7 @@ body {
 }
 
 main {
-  min-width: 80vw;
+  min-width: 70vw;
 }
 
 .kiteone {
@@ -90,9 +90,9 @@ nav > a.active {
   text-align: center;
 }
 
-section {
+/* section {
   border: 3px solid #44052b;
-}
+} */
 
 #wine-top {
   display: flex;
@@ -102,8 +102,8 @@ section {
 }
 
 #wine-type, #wine-maker {
-  border: solid #44052b;
-  margin: 1vw;
+  /* border: solid #44052b; */
+  margin: 10px;
   padding: 0 1vw;
 }
 
@@ -113,16 +113,15 @@ section {
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: flex-end;
+  padding-top: 5px;
   margin-bottom: 0;
-  padding-bottom: 0;
 }
 
 .label-p {
   flex-wrap: nowrap;
   text-align: left;
   font-weight: bold;
-  margin-bottom: 0;
-  padding-bottom: 0;
+  margin: 0;
 }
 
 .value-d {
@@ -141,27 +140,57 @@ section {
 #wine-rating {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   text-align: center;
 }
 
+#my-rating {
+  padding-bottom: 5px;
+}
+
 #avg-rating {
-  width: 2rem;
+  width: 2.5rem;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
-  border: solid black;
+  border: 1.8px solid black;
 }
 
 #avg-rating p {
   text-align: center;
+  font-weight: bold;
   padding: 0;
   margin: auto;
 }
 
+.multi {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 10px;
+  border: none;
+  padding: none;
+}
+
+.multi p {
+  background-color: #dcc9d4;
+  text-align: left;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.note {
+  border: solid black;
+}
+
+.note-header {
+  display: flex;
+  justify-content: flex-start;
+}
 
 
 
@@ -169,10 +198,6 @@ section {
 
 .instructions {
   font-family: "Raleway", sans-serif;
-}
-
-.vendor {
-  outline: 2px solid black;
 }
 
 .index-table td {
