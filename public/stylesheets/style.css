@@ -2,9 +2,6 @@
   box-sizing: border-box;
 }
 
-
-
-
 body {
   margin: 0;
   font: 14px "Kite One","Lucida Grande", Helvetica, Arial, sans-serif;
@@ -84,8 +81,16 @@ button:hover {
   border-color: white;
 }
 
-.log-in {
-  font-size: 1.5rem;
+.home1 {
+ font-size: 3rem;
+}
+
+.home-button {
+  font-size: 2.5rem;
+}
+
+.home2 {
+  font-size: 2.5rem;
 }
 
 .yes-no {
