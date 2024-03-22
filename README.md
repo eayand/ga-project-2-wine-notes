@@ -4,9 +4,9 @@ Users can enter wines they've tried and make notes on their impressions of them.
 
 # Screenshots
 
-![screenshot of the wines index page](/images/wine-index.png)
+![screenshot of the wines index page](public/images/wine-index.png)
 
-![screenshot of an individual wine's page](/images/example-wine.png)
+![screenshot of an individual wine's page](public/images/example-wine.png)
 
 # Technologies Used
 
