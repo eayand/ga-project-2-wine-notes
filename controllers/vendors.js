@@ -106,7 +106,6 @@ async function associate(req, res) {
     }
 }
 
-
 async function remove(req, res) {
     try {
         const wine = await Wine.findById(req.params.id)
