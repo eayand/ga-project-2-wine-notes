@@ -12,7 +12,7 @@ module.exports = {
 
  async function newNote(req, res) {
     const wine = await Wine.findById(req.params.id)
-    res.render('notes/new', { title: `Note on ${wine.name} `, wine, errorMsg: '' })
+    res.render('notes/new', { title: `Note on ${wine.name}`, wine, errorMsg: '' })
 }
 
  async function create(req, res) {
@@ -30,8 +30,8 @@ module.exports = {
 }
 
 async function edit(req, res) {
-    const note = await Note.findById(req.params.id)
-    res.render('notes/edit', { title: 'Edit Your Note', note})
+    const note = await Note.findById(req.params.id).populate('wine')
+    res.render('notes/edit', { title: 'Edit Your Note', note })
 }
 
 async function update(req, res) {

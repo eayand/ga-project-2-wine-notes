@@ -48,12 +48,16 @@ button {
   border-radius: 10px;
 }
 
-input {
+input, textarea {
   background-color: #dcc9d4;
   color: #44052b;
   border: solid #44052b;
   border-radius: 10px;
   font-size: 1rem;
+}
+
+textarea {
+  font-family: "Kite One";
 }
 
 select {
@@ -365,4 +369,52 @@ td {
   flex-wrap: wrap;
   justify-content: center;
   padding: 5px;
+}
+
+.note-vintage {
+  margin: .5rem;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  margin-top: -1.5rem;
+}
+
+.numbers {
+  width: 20%;
+}
+
+.note-body {
+  height: 6rem;
+  width: 18rem;
+}
+
+
+/* from CSS Tricks */
+
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 18px 0;
+  width: 80%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 80%;
+  height: 9px;
+  background: #44052b;
+  border-radius: 1.3px;
+  /* border: solid #44052b; */
+}
+input[type=range]::-webkit-slider-thumb {
+  border: solid #44052b;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  background: #dcc9d4;
+  -webkit-appearance: none;
+  margin-top: -14px;
 }

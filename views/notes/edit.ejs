@@ -1,30 +1,42 @@
 <%- include('../partials/header') %>
 
-<h2>My Thoughts on <%= note.wine.name %></h2>
+<h2><span class="raleway">My Thoughts on  </span><%= note.wine.name %></h2>
 
 <form id="edit-note-form" action="/notes/<%= note._id %>?_method=PUT" method="POST">
 
-    <label>Vintage</label>
-    <select name="vintage">
+    <label class="raleway-bold">Vintage</label>
+    <select name="vintage" class="note-vintage">
         <% let year = new Date().getFullYear() %> 
         <%-  `<option value="${note.vintage}">${note.vintage}</option>` %>
         <option value="unknown">unknown</option>
         <% for (let i = 0; i < 100; i++) { %>
             <%- `<option value="${year - i}">${year - i}</option>` %>
         <% } %>
-    </select>
+    </select><br><br>
   
-    <label>My Rating</label>
-    <input type="range" name="rating" min="1" max="5" value="<%=note.rating%>">
-
-    <label>Notes</label>
-    <input type="text" name="body" value="<%= note.body %>">
+    <div class="slider">  
+    <label class="raleway-bold">My Rating</label><br>
+    <input type="range" name="rating" min="1" max="5" value="<%=note.rating%>"><br><br>
+    <div class="legend">
+        <div class="numbers">1</div>
+        <div class="numbers">2</div>
+        <div class="numbers">3</div>
+        <div class="numbers">4</div>
+        <div class="numbers">5</div>
+    </div>
+    </div>
+    <br><br>
+    
+    <label class="raleway-bold">Notes</label><br>
+    <!-- <input class="note-body" type="text" name="body" "><br><br><br> -->
+    <textarea name="body" class="note-body" cols="30" rows="10"><%= note.body %></textarea><br><br><br>
 
     <input type="submit" value="Save Note">
 
 </form>
 
-<a href="/notes/<%= note._id %>/delete"><button>Delete This Note</button></a>
+<br>
+<a href="/notes/<%= note._id %>/delete"><button class="large-button">Delete This Note</button></a>
 </form>
 
 <%- include('../partials/footer') %>

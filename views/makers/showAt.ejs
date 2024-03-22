@@ -1,25 +1,26 @@
 <%- include('../partials/header') %>
 
 <h1><%= wine.name %></h1>
-<p class="instructions">Who makes <%= wine.name %>?</p>
-<p class="instructions">Pick from your saved makers or add a new maker.</p>
+<p class="raleway">Who makes <%= wine.name %>?</p>
+<p class="raleway">Pick from your saved makers or add a new maker.</p>
 <br>
 <br>
 
 <form id="new-maker-form" action="/wines/<%= wine._id %>/makers/new" method="POST">
-  <label>Create New Maker: </label>
-  <input type="text" name="name">
+  <label class="raleway-bold">Create New Maker: </label><br>
+  <input type="text" name="name" class="type-input">
   <input type="submit" value="Add">
-</form>
+</form><br>
 
 <form id="add-saved-maker" action="/wines/<%= wine._id %>/makers" method="POST">
-  <select name="makerId">
+  <label class="raleway-bold">Choose Saved Maker: </label><br>
+  <select name="makerId" class="type-input">
     <option value="blank"></option>
     <%- makers.map(m => 
       `<option value="${m._id}">${m.name}</option>`
       ).join('') %>
   </select>
-  <button type="submit">Select</button>
+  <button type="submit" class="large-button light-button">Add</button>
 </form>
 
 <%- include('../partials/footer') %>
