@@ -35,7 +35,7 @@ async function create(req, res) {
       const wine = await Wine.findById(req.params.id).populate('type').populate('maker')
       const notes = await Note.find({ 'wine': wine })
       const vendors = await Vendor.find({ 'wines': wine })
-      const rating = (notes.reduce((acc, note) => acc + note.rating, 0)) / (notes.length)
+      const rating = ((notes.reduce((acc, note) => acc + note.rating, 0)) / (notes.length)).toFixed(1)
       res.render('wines/show', {title: wine.name, wine, notes, vendors, rating})
  }
 

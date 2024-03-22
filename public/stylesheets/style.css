@@ -218,8 +218,8 @@ nav > a.active {
 
 .button-label {
   display: flex;
-  /* justify-content: center; */
-  justify-content: flex-start;
+  justify-content: center;
+  /* justify-content: flex-start; */
   gap: 15px;
   flex-wrap: nowrap;
 }
@@ -231,8 +231,8 @@ nav > a.active {
 .multi {
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: center; */
-  justify-content: flex-start;
+  justify-content: center;
+  /* justify-content: flex-start; */
   gap: 10px;
   border: none;
   padding: none;
@@ -248,7 +248,7 @@ nav > a.active {
 .notes-container {
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: center; */
+  justify-content: center;
 }
 
 .note {
