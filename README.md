@@ -21,7 +21,7 @@ Users can enter wines they've tried and make notes on their impressions of them.
 
 # Getting Started
 
-[Click to use the app](https://wine-notes-d7d6ff1c3ccb.herokuapp.com/oauth2callback)
+[Click to use the app](https://wine-notes-d7d6ff1c3ccb.herokuapp.com)
 
 # Next Steps
 
