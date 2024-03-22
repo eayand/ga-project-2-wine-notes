@@ -21,7 +21,7 @@ Users can enter wines they've tried and make notes on their impressions of them.
 
 # Getting Started
 
-[Click to guess the code!](https://eayand.github.io/ga-project-1-browser-game/)
+[Click to use the app](https://wine-notes-d7d6ff1c3ccb.herokuapp.com/oauth2callback)
 
 # Next Steps
 
