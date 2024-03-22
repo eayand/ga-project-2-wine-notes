@@ -4,7 +4,11 @@ const Maker = require('../models/maker')
 module.exports = {
     create,
     show,
+    showAt,
     associate,
+    update,
+    warn,
+    delete: deleteMaker,
  }
 
  async function create(req, res) {
@@ -23,10 +27,16 @@ module.exports = {
     }
 }
 
- async function show(req, res) {
+async function show(req, res) {
+    const maker = await Maker.findById(req.params.id)
+    const wines = await Wine.find({ maker: maker })
+    res.render('makers/show', { title: maker.name, maker, wines })
+}
+
+ async function showAt(req, res) {
     const wine = await Wine.findById(req.params.id)
     const makers = await Maker.find({})
-    res.render('makers/show', {
+    res.render('makers/showAt', {
         title: 'Wine Maker',
         errorMsg: '',
         wine,
@@ -40,11 +50,28 @@ async function associate(req, res) {
         const maker = await Maker.findById(req.body.makerId)
         wine.maker = maker
         await wine.save()
-        // maker.wines.push(wine)
-        // await maker.save()
         res.redirect(`/wines/${wine._id}`)
     } catch (err) {
         console.log(err)
         res.render(`/wines/${wine._id}/makers`, { errorMsg: err.message })
     }
+}
+
+async function update(req, res) {
+    const maker = await Maker.findById(req.params.id)
+    maker.name = req.body.name.trim()
+    await maker.save()
+    res.redirect(`/makers/${maker._id}`)
+}
+
+async function warn(req, res) {
+    const maker = await Maker.findById(req.params.id)
+    res.render('makers/warning', {title: 'Confirm Delete?', maker})
+}
+
+async function deleteMaker(req, res) {
+    const maker = await Maker.findById({ '_id': req.params.id })
+    if (!maker) return res.redirect('/wines/index')
+    await Maker.deleteOne({ '_id': req.params.id})
+    res.redirect('/wines/index')
 }

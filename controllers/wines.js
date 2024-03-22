@@ -6,6 +6,8 @@ module.exports = {
       new: newWine, 
       create,
       show,
+      edit,
+      update,
       index,
       warn,
       delete: deleteWine,
@@ -22,7 +24,7 @@ async function create(req, res) {
       req.body.user = req.user._id
       try {
             const wine = await Wine.create(req.body)
-            res.redirect(`/wines/${wine._id}`, {'title': wine.name, wine})
+            res.redirect(`/wines/${wine._id}`)
       } catch (err) {
             console.log(err)
             res.render('wines/new', { errorMsg: err.message })
@@ -30,12 +32,29 @@ async function create(req, res) {
 }
 
  async function show(req, res) {
-      const wine = await Wine.findById(req.params.id).populate('type').populate('maker') //need to add tags, vendors
+      const wine = await Wine.findById(req.params.id).populate('type').populate('maker')
       const notes = await Note.find({ 'wine': wine })
       const vendors = await Vendor.find({ 'wines': wine })
       const rating = (notes.reduce((acc, note) => acc + note.rating, 0)) / (notes.length)
       res.render('wines/show', {title: wine.name, wine, notes, vendors, rating})
  }
+
+ async function edit(req, res) {
+      const wine = await Wine.findById(req.params.id)
+      res.render('wines/edit', {title: 'Update Name', wine})
+ }
+
+ async function update(req, res) {
+      const wine = await Wine.findById(req.params.id)
+      wine.name = req.body.name.trim()
+      try {
+          await wine.save()
+          res.redirect(`${wine._id}`)
+      } catch (err) {
+          console.log(err)
+          res.render('wines/edit', { errorMsg: err.message })
+      }
+  }
 
 //  async function show(req, res) {
 //       const wine = await Wine.findById(req.params.id)

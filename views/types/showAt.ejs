@@ -1,0 +1,26 @@
+<%- include('../partials/header') %>
+
+<h1><%= wine.name %></h1>
+<p class="raleway">What type of wine is <%= wine.name %>?</p>
+<p class="raleway">Pick from your saved types or add a new type.</p>
+<br>
+
+<form id="new-type-form" action="/wines/<%= wine._id %>/types/new" method="POST">
+  <label class="raleway-bold">Add New Type: </label><br>
+  <input type="text" name="name" class="type-input">
+  <input type="submit" value="Add">
+</form><br>
+
+<form id="add-saved-type" action="/wines/<%= wine._id %>/types" method="POST">
+  <label class="raleway-bold">Choose Saved Type: </label><br>
+  <select name="typeId" class="type-input">
+    <option value="blank"></option>
+    <%- types.map(t => 
+      `<option value="${t._id}">${t.name}</option>`
+      ).join('') %>
+  </select>
+  <button type="submit" class="large-button light-button">Add</button>
+</form>
+
+
+<%- include('../partials/footer') %>

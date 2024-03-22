@@ -1,36 +1,43 @@
 <%- include('../partials/header') %>
 
-<h1><%= wine.name %> can be found at:</h1>
+<br>
+<h2><%= wine.name %> <span class="raleway">can be found at:</span></h2>
 
-<% if (wineVendors.length) { %> 
-    <% wineVendors.forEach(function(v) { %>
-    <div class="vendor">
-        <div>
-            <p><%= v.name %></p>
+<div class="vendors-container">
+    <% if (wineVendors.length) { %> 
+        <% wineVendors.forEach(function(v) { %>
+        <div class="vendor">
+            <div>
+                <%= v.name %>
+            </div>
+            <div>
+                <a href="/wines/<%= wine._id %>/vendors/<%= v._id %>/remove"><button class="light-button">X</button></a>
+            </div>
         </div>
-        <div>
-            <a href="/wines/<%= wine._id %>/vendors/<%= v._id %>/remove"><button>Remove</button></a>
-        </div>
-    </div>
-    <% }) %>
-<% } %>
+        <% }) %>
+    <% } %>
+</div>
+<br>
+<br>
 
 <form id="new-vendor-form" action="/wines/<%= wine._id %>/vendors" method="POST">
-  <label>Create New Vendor: </label>
+  <label class="raleway-bold">Create New Vendor: </label>
   <input type="text" name="name">
   <input type="submit" value="Add">
 </form>
+<br>
 
 <form id="add-saved-vendor" action="/wines/<%= wine._id %>/vendors/associate" method="POST">
+    <label class="raleway-bold">Choose Existing Vendor: </label>
     <select name="vendorId">
       <option value="blank"></option>
         <% vendors.forEach(function(v) { %>
             <option value="<%= v._id %>"><%= v.name %></option>
         <%}) %>
     </select>
-    <button type="submit">Select</button>
+    <button type="submit" class="light-button large-button">Add</button>
 </form>
-
-<a href="/wines/<%= wine._id %>"><button>Done</button></a>
+<br>
+<a href="/wines/<%= wine._id %>"><button class="large-button">Save Changes</button></a>
 
 <%- include('../partials/footer') %>

@@ -1,0 +1,16 @@
+<%- include('../partials/header') %>
+
+<br>
+<h2><%= title %></h2>
+<br>
+
+<form id="edit-vendor-form" action="/wines/<%= wine._id %>?_method=PUT" method="POST">
+    
+    <label class="raleway-bold">Name</label>
+    <input type="text" name="name" value="<%= wine.name %>" id="name-change">
+
+    <input type="submit" value="Save Changes">
+
+</form>
+
+<%- include('../partials/footer') %>

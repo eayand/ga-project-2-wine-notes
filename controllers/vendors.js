@@ -11,6 +11,8 @@ module.exports = {
     showAt,
     associate,
     remove,
+    warn,
+    delete: deleteVendor,
  }
 
  async function create(req, res) {
@@ -51,12 +53,12 @@ async function index(req, res) {
 }
 
 async function show(req, res) {
-    const vendor = await Vendor.findById(req.params.id)
+    const vendor = await Vendor.findById(req.params.id).populate('wines')
     res.render('vendors/show', {title: vendor.name, vendor})
 }
 
 async function edit(req, res) {
-    const vendor = await Vendor.findById(req.params.id)
+    const vendor = await Vendor.findById(req.params.id).populate('wines')
     res.render('vendors/edit', {title: 'Edit Vendor', vendor})
 }
 
@@ -104,25 +106,6 @@ async function associate(req, res) {
     }
 }
 
-//THIS NEEDS TO BE DEBUGGED, THEN CHANGE TO THIS TO AVOID DOUBLE ADDS
-// async function associate(req, res) {
-//     try {
-//         const wine = await Wine.find({ _id: req.params.id, vendors: {$nin: [req.body.vendorId]} })
-//         if (!wine) return res.redirect(`/wines/${req.params.id}/vendors`)
-//         const vendor = await Vendor.findById(req.body.vendorId)
-//         wine.vendors.push(vendor)
-//         await wine.save()
-//         vendor.wines.push(wine)
-//         await vendor.save()
-//         res.redirect(`/wines/${wine._id}/vendors`)
-//     } catch (err) {
-//         console.log(err)
-//         const wine = await Wine.findById(req.params.id)
-//         const vendor = req.body._id
-//         res.render('vendors/show', { errorMsg: err.message, title: 'Error', wine, vendor })
-//     }
-// }
-
 
 async function remove(req, res) {
     try {
@@ -144,3 +127,15 @@ async function remove(req, res) {
         res.render('vendors/show', { errorMsg: err.message, title: 'Error' })
     }
 }
+
+async function warn(req, res) {
+    const vendor = await Vendor.findById(req.params.id)
+    res.render('vendors/warning', {title: 'Confirm Delete?', vendor})
+}
+
+async function deleteVendor(req, res) {
+    const vendor = await Vendor.findById({ '_id': req.params.id })
+    if (!vendor) return res.redirect('/vendors/index')
+    await Vendor.deleteOne({ '_id': req.params.id})
+    res.redirect('/vendors/index')
+  }

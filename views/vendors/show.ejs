@@ -2,32 +2,46 @@
 
 <h1><%= vendor.name %></h1>
 
-<a href="/vendors/<%= vendor._id %>/edit"><button>Edit Vendor</button></a>
-
-
 <section>
     <div class="label-d">
-        <p class="label-p">Address</p>
+        <p class="label-p raleway-bold">Address</p>
     </div>
     <div class="value-d">
         <% if (vendor.address) { %> 
-            <p class="value-p"><%= vendor.address %></p>
+            <p class="value-p vendor-page"><%= vendor.address %></p>
             <% } %>
         </div>
-</section><br>
-
-<section>
-    <div class="label-d">
-        <p class="label-p">Thoughts</p>
-    </div>
-    <div class="value-d">
-        <% if (vendor.thoughts) { %> 
-            <p class="value-p"><%= vendor.thoughts %></p>
-            <% } %>
-        </div>
-</section><br>
-
+    </section><br>
     
+    <section>
+        <div class="label-d">
+            <p class="label-p raleway-bold">Thoughts</p>
+        </div>
+        <div class="value-d">
+            <% if (vendor.thoughts) { %> 
+                <p class="value-p vendor-page"><%= vendor.thoughts %></p>
+                <% } %>
+            </div>
+    </section><br>
+        
+    <section>
+            <div class="label-d, button-label">
+                <p class="label-p, raleway-bold">Wines</p>
+            </div>
+            <div class="value-d, multi">
+                <% if (vendor.wines.length) { %> 
+                    <% vendor.wines.forEach(function(w) { %>
+                        <div>
+                            <a href="/wines/<%= w._id %>"><p class="value-p"><%= w.name %></p></a>
+                        </div>
+                    <% }) %>
+                <% } %>
+            </div>
+    </section>
+    <br>
+    <br>
+    <a href="/vendors/<%= vendor._id %>/edit"><button class="large-button">Edit Vendor</button></a>
+
     <%- include('../partials/footer') %>
 
 

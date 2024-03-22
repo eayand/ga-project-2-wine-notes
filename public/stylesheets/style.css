@@ -2,13 +2,7 @@
   box-sizing: border-box;
 }
 
-/* 
-theme colors:
-mid red wine #44052b
-dark red wine 
-light red wine #be9ab0
-light white wine #f3f0cf
-*/
+
 
 
 body {
@@ -18,9 +12,8 @@ body {
 }
 
 main {
-  max-width: 60vw;
+  max-width: 600px;
 }
-/* make this a media querry for over a certain size only */
 
 .kiteone {
   font-family: "Kite One";
@@ -63,6 +56,13 @@ input {
   font-size: 1rem;
 }
 
+select {
+  background-color: #dcc9d4;
+  border: solid #44052b;
+  font-size: 1rem;
+  font-family: 'Kite One';
+}
+
 .light-button {
   background-color: #dcc9d4;
 }
@@ -71,27 +71,47 @@ input {
   font-size: 1rem;
 }
 
+.extra-large-button {
+  font-size: 1.3rem;
+}
+
 button:hover {
   color: white;
   border-color: white;
 }
 
+.log-in {
+  font-size: 1.5rem;
+}
+
+.yes-no {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
 nav {
-  height: 5vh;
+  height: 5.5vh;
   background-color: #a78399;
   color: black;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
 }
 
 nav > a {
-  margin: 20px;
+  /* margin: 20px; */
   text-decoration: none;
   padding: 10px;
+  margin-right: 30px;
   border-radius: 5px;
 }
 
 nav > a:hover:not(.active) {
   color: white;
-  background-color: #424748;
+  background-color: #44052b;
 }
 
 nav > a.active {
@@ -110,10 +130,6 @@ nav > a.active {
   justify-content: center;
   text-align: center;
 }
-
-/* section {
-  border: 3px solid #44052b;
-} */
 
 #wine-top {
   display: flex;
@@ -198,6 +214,7 @@ nav > a.active {
 
 .button-label {
   display: flex;
+  /* justify-content: center; */
   justify-content: flex-start;
   gap: 15px;
   flex-wrap: nowrap;
@@ -210,6 +227,7 @@ nav > a.active {
 .multi {
   display: flex;
   flex-wrap: wrap;
+  /* justify-content: center; */
   justify-content: flex-start;
   gap: 10px;
   border: none;
@@ -226,10 +244,11 @@ nav > a.active {
 .notes-container {
   display: flex;
   flex-wrap: wrap;
+  /* justify-content: center; */
 }
 
 .note {
-  border: solid black;
+  /* border: solid black; */
   padding: .5rem;
   margin: 0 1rem 1rem 1rem;
   max-width: 400px;
@@ -249,6 +268,10 @@ nav > a.active {
   gap: 20px;
 }
 
+.date {
+  font-weight: 550;
+}
+
 .updated {
   display: flex;
   justify-content: flex-start;
@@ -262,12 +285,21 @@ nav > a.active {
   outline: 2px solid black;
 }
 
+#name-change {
+  height: 1.7rem;
+}
+
 .index-header {
   display: flex;
   justify-content: space-evenly;
+  gap: 40px;
 }
 
-#new-wine-form-at-index {
+td {
+  padding: 0 3px;
+}
+
+#new-wine-form-at-index, #new-vendor-form-at-index {
   display: flex;
   justify-content: flex-end;
   gap: 5px;
@@ -278,158 +310,59 @@ nav > a.active {
   height: 1.5rem;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-.kite-one-regular {
-  font-family: "Kite One", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-} */
-
-/* // <uniquifier>: Use a unique and descriptive class name
-// <weight>: Use a value from 100 to 900
-
-.raleway-<uniquifier> {
-  font-family: "Raleway", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-} */
-
-
-
-/* // <uniquifier>: Use a unique and descriptive class name
-// <weight>: Use a value from 200 to 1000
-
-.nunito-sans-<uniquifier> {
-  font-family: "Nunito Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100,
-    "YTLC" 500;
-}  */
-
-/* 
-.barlow-thin {
-  font-family: "Barlow", sans-serif;
-  font-weight: 100;
-  font-style: normal;
+.vendor-page {
+  padding: .3rem;
 }
 
-.barlow-extralight {
-  font-family: "Barlow", sans-serif;
-  font-weight: 200;
-  font-style: normal;
+.vendors-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.barlow-light {
-  font-family: "Barlow", sans-serif;
-  font-weight: 300;
-  font-style: normal;
+.vendor {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 5px;
+  background-color: #dcc9d4;
+  padding: .3rem;
+  border-radius: 15px;
 }
 
-.barlow-regular {
-  font-family: "Barlow", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+#new-vendor-form {
+  margin-bottom: .5rem;
 }
 
-.barlow-medium {
-  font-family: "Barlow", sans-serif;
-  font-weight: 500;
-  font-style: normal;
+#new-vendor-form > input {
+  height: 1.6rem;
 }
 
-.barlow-semibold {
-  font-family: "Barlow", sans-serif;
-  font-weight: 600;
-  font-style: normal;
+.vendor-name-edit, .vendor-address-edit {
+  height: 2rem;
+  width: 18rem;
 }
 
-.barlow-bold {
-  font-family: "Barlow", sans-serif;
-  font-weight: 700;
-  font-style: normal;
+.vendor-thoughts-edit {
+  height: 6rem;
+  width: 18rem;
 }
 
-.barlow-extrabold {
-  font-family: "Barlow", sans-serif;
-  font-weight: 800;
-  font-style: normal;
+.type-input {
+  margin-top: .8rem;
+  height: 2rem;
+  width: 15rem;
 }
 
-.barlow-black {
-  font-family: "Barlow", sans-serif;
-  font-weight: 900;
-  font-style: normal;
+.type-edit {
+  height: 1.8rem;
+  margin-top: .5rem;
 }
 
-.barlow-thin-italic {
-  font-family: "Barlow", sans-serif;
-  font-weight: 100;
-  font-style: italic;
+.type-wines {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 5px;
 }
-
-.barlow-extralight-italic {
-  font-family: "Barlow", sans-serif;
-  font-weight: 200;
-  font-style: italic;
-}
-
-.barlow-light-italic {
-  font-family: "Barlow", sans-serif;
-  font-weight: 300;
-  font-style: italic;
-}
-
-.barlow-regular-italic {
-  font-family: "Barlow", sans-serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.barlow-medium-italic {
-  font-family: "Barlow", sans-serif;
-  font-weight: 500;
-  font-style: italic;
-}
-
-.barlow-semibold-italic {
-  font-family: "Barlow", sans-serif;
-  font-weight: 600;
-  font-style: italic;
-}
-
-.barlow-bold-italic {
-  font-family: "Barlow", sans-serif;
-  font-weight: 700;
-  font-style: italic;
-}
-
-.barlow-extrabold-italic {
-  font-family: "Barlow", sans-serif;
-  font-weight: 800;
-  font-style: italic;
-}
-
-.barlow-black-italic {
-  font-family: "Barlow", sans-serif;
-  font-weight: 900;
-  font-style: italic;
-} */

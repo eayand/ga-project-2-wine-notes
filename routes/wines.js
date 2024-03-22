@@ -5,9 +5,11 @@ const winesCtrl = require('../controllers/wines')
 
 router.get('/index', ensureLoggedIn, winesCtrl.index)
 
-// router.get('/new', ensureLoggedIn, winesCtrl.new)
-
 router.get('/:id', ensureLoggedIn, winesCtrl.show)
+
+router.get('/:id/edit', ensureLoggedIn, winesCtrl.edit)
+
+router.put('/:id', ensureLoggedIn, winesCtrl.update)
 
 router.post('/', ensureLoggedIn, winesCtrl.create)
 

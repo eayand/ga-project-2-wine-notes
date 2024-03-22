@@ -1,14 +1,16 @@
 <%- include('../partials/header') %>
 
-<h2><%= title %></h2>
-<!-- <a href="/vendors/new"><button>Add a Vendor</button></a>
-<br>
-<br> -->
-<form id="new-vendor-form-at-index" action="/vendors" method="POST">
-    <label>Create New Vendor: </label>
-    <input type="text" name="name">
-    <input type="submit" value="Add">
+
+<div class="index-header">
+  <h2><%= title %></h2>
+  <form id="new-vendor-form-at-index" action="/vendors" method="POST">
+      <label class="raleway-bold">Add a New Vendor: </label><br>
+      <input type="text" name="name">
+   <input type="submit" value="Add">
   </form>
+</div>
+<br>
+
 
     <table id="vendor-list" class="index-table">
       <thead>

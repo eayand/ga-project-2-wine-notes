@@ -1,25 +1,36 @@
 <%- include('../partials/header') %>
 
-<h1><%= wine.name %></h1>
-<p class="instructions">Who makes <%= wine.name %>?</p>
-<p class="instructions">Pick from your saved makers or add a new maker.</p>
 <br>
+<h1><%= title %></h1>
 <br>
+<form id="change-maker-name" action="/makers/<%= maker._id %>?_method=PUT" method="POST">
+    
+    <label class="raleway-bold">Change Name?</label><br>
+    <input class="type-edit" type="text" name="name" value="<%= maker.name %>">
 
-<form id="new-maker-form" action="/wines/<%= wine._id %>/makers/new" method="POST">
-  <label>Create New Maker: </label>
-  <input type="text" name="name">
-  <input type="submit" value="Add">
+    <input type="submit" value="Save">
 </form>
 
-<form id="add-saved-maker" action="/wines/<%= wine._id %>/makers" method="POST">
-  <select name="makerId">
-    <option value="blank"></option>
-    <%- makers.map(m => 
-      `<option value="${m._id}">${m.name}</option>`
-      ).join('') %>
-  </select>
-  <button type="submit">Select</button>
-</form>
+<br><br>
+<section>
+    <div class="label-d button-label type-wines">
+        <p class="label-p raleway-bold">Wines</p>
+    </div>
+    <div class="multi type-wines">
+        <% if (wines.length) { %> 
+            <% wines.forEach(function(w) { %>
+                <div>
+                    <a href="/wines/<%= w._id %>"><p class="value-p"><%= w.name %></p></a>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
+</section>
+
+
+
+<br>
+<br>
+<a href="/makers/<%= maker._id %>/delete"><button class="large-button">Delete This Maker</button></a>
 
 <%- include('../partials/footer') %>

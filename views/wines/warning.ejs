@@ -1,12 +1,15 @@
 <%- include('../partials/header') %>
 
-<h2>Delete <%= wine.name %> and all its notes?</h2>
+<br>
+<h1><span class="raleway">Delete </span><%= wine.name %><span class="raleway"> and all its notes?</span></h1>
 
-
+<div class="yes-no">
 <form action="/wines/<%= wine._id %>?_method=DELETE" method="POST">
-<button type="submit">Delete</button>
+<button type="submit" class="extra-large-button">Delete</button>
 </form>
 
-<a href="/wines/<%= wine._id %>"><button>Cancel</button></a>
+<a href="/wines/<%= wine._id %>"><button class="extra-large-button">Cancel</button></a>
+</div>
+
 
 <%- include('../partials/footer') %>

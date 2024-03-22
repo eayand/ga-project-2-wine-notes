@@ -47,7 +47,6 @@
             <% vendors.forEach(function(v) { %>
                 <div class="vendor">
             <p class="value-p"><%= v.name %></p>
-            <a href=""></a>
                 </div>
         <% }) %>
         <% } %>
@@ -67,7 +66,7 @@
             <% notes.forEach(function(n) { %>
             <div class="note value-d">
                 <div class="note-header">
-                    <div class="date, raleway">
+                    <div class="date raleway">
                         <% const created = n.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
                         <%= n.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
                     </div>
@@ -100,6 +99,10 @@
 </section><br>
 
 <a href="/wines/<%= wine._id %>/delete"><button class="large-button">Delete This Wine</button></a>
+</form>
+<br>
+<br>
+<a href="/wines/<%= wine._id %>/edit"><button class="large-button">Change Name</button></a>
 </form>
 
 <%- include('../partials/footer') %>

@@ -1,0 +1,16 @@
+<%- include('../partials/header') %>
+
+<br>
+<h1><span class="raleway">Permanently delete </span><%= maker.name %><span class="raleway"> from all its associated wines? </span></h1>
+<h2 class="raleway">The wines will not be deleted.</h2>
+
+<div class="yes-no">
+<form action="/makers/<%= maker._id %>?_method=DELETE" method="POST">
+<button type="submit" class="extra-large-button">Delete</button>
+</form>
+
+<a href="/makers/<%= maker._id %>"><button class="extra-large-button">Cancel</button></a>
+</div>
+
+
+<%- include('../partials/footer') %>

@@ -21,4 +21,8 @@ router.get('/vendors/:id/edit', ensureLoggedIn, vendorsCtrl.edit)
 
 router.put('/vendors/:id', ensureLoggedIn, vendorsCtrl.update)
 
+router.get('/vendors/:id/delete', ensureLoggedIn, vendorsCtrl.warn)
+
+router.delete('/vendors/:id', ensureLoggedIn, vendorsCtrl.delete)
+
 module.exports = router
