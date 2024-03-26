@@ -6,9 +6,9 @@ module.exports = {
     createAt,
     index,
     show,
+    showAt,
     edit,
     update,
-    showAt,
     associate,
     remove,
     warn,
@@ -57,6 +57,20 @@ async function show(req, res) {
     res.render('vendors/show', {title: vendor.name, vendor})
 }
 
+ async function showAt(req, res) {
+    const wine = await Wine.findById(req.params.id)
+    const wineVendors = await Vendor.find({ 'wines': wine })
+    const vendors = await Vendor.find({ 'user': req.user._id})
+    res.render('vendors/showAt', {
+        title: 'Vendors',
+        errorMsg: '',
+        wine,
+        wineVendors,
+        vendors,
+    })
+}
+// USE THIS SHOWAT FUNCTION AS A MODEL FOR HOW TO PREVENT THE OTHER FUNCTIONS THAT PASS EXISTING VALUES TO A VIEW FROM PULLING ANY THAT DON'T BELONG TO THAT USER; The user _id should always be one of the filters in .find()
+
 async function edit(req, res) {
     const vendor = await Vendor.findById(req.params.id).populate('wines')
     res.render('vendors/edit', {title: 'Edit Vendor', vendor})
@@ -74,19 +88,6 @@ async function update(req, res) {
         console.log(err)
         res.render('vendors/edit', { errorMsg: err.message })
     }
-}
-
- async function showAt(req, res) {
-    const wine = await Wine.findById(req.params.id)
-    const wineVendors = await Vendor.find({ 'wines': wine })
-    const vendors = await Vendor.find({ 'user': req.user._id})
-    res.render('vendors/showAt', {
-        title: 'Vendors',
-        errorMsg: '',
-        wine,
-        wineVendors,
-        vendors,
-    })
 }
 
 async function associate(req, res) {

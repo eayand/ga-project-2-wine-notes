@@ -35,7 +35,7 @@ async function show(req, res) {
 
  async function showAt(req, res) {
     const wine = await Wine.findById(req.params.id)
-    const makers = await Maker.find({})
+    const makers = await Maker.find({ 'user': req.user._id })
     res.render('makers/showAt', {
         title: 'Wine Maker',
         errorMsg: '',

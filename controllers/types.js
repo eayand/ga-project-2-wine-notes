@@ -28,13 +28,13 @@ module.exports = {
 
 async function show(req, res) {
     const type = await Type.findById(req.params.id)
-    const wines = await Wine.find({ type: type })
+    const wines = await Wine.find({ 'type': type, 'user': req.user._id })
     res.render('types/show', { title: type.name, type, wines })
 }
 
  async function showAt(req, res) {
     const wine = await Wine.findById(req.params.id)
-    const types = await Type.find({})
+    const types = await Type.find({ 'user': req.user._id })
     res.render('types/showAt', {
         title: 'Wine Type',
         errorMsg: '',
