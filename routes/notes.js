@@ -3,20 +3,16 @@ const router = express.Router()
 const ensureLoggedIn = require('../config/ensureLoggedIn')
 const notesCtrl = require('../controllers/notes')
 
-// router.get('/wines/:id/notes', ensureLoggedIn, typesCtrl.show)
-
-// router.get('/:id', typesCtrl.show)
-
 router.get('/wines/:id/notes/new', ensureLoggedIn, notesCtrl.new)
 
 router.post('/wines/:id/notes', ensureLoggedIn, notesCtrl.create)
 
-router.get('/notes/:id/edit', ensureLoggedIn, notesCtrl.edit)
+router.get('/wines/:id/notes/:nid/edit', ensureLoggedIn, notesCtrl.edit)
 
-router.put('/notes/:id', ensureLoggedIn, notesCtrl.update)
+router.put('/wines/:id/notes/:nid', ensureLoggedIn, notesCtrl.update)
 
-router.get('/notes/:id/delete', ensureLoggedIn, notesCtrl.warn)
+router.get('/wines/:id/notes/:nid/delete', ensureLoggedIn, notesCtrl.warn)
 
-router.delete('/notes/:id', ensureLoggedIn, notesCtrl.delete)
+router.delete('/wines/:id/notes/:nid', ensureLoggedIn, notesCtrl.delete)
 
 module.exports = router

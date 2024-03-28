@@ -8,9 +8,6 @@ const userSchema = new Schema({
       required: true
     },
     email: String,
-    avatar: String,
-    wines: [{type: Schema.Types.ObjectId, ref: 'Wine'}],
-    vendors: [{type: Schema.Types.ObjectId, ref: 'Vendor'}],
   }, {
     timestamps: true
   })

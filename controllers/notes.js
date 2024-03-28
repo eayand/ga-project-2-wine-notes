@@ -1,5 +1,4 @@
 const Wine = require('../models/wine')
-const Note = require('../models/note')
 
 module.exports = {
     new: newNote,
@@ -16,12 +15,11 @@ module.exports = {
 }
 
  async function create(req, res) {
-    req.body.user = req.user._id
-    const wine = await Wine.findById(req.params.id)
+     const wine = await Wine.findById(req.params.id)
+     req.body.user = req.user._id
     try {
-        const note = await Note.create(req.body)
-        note.wine = wine
-        await note.save()
+        wine.notes.push(req.body)
+        await wine.save()
         res.redirect(`/wines/${wine._id}`)
     } catch (err) {
           console.log(err)
@@ -30,34 +28,38 @@ module.exports = {
 }
 
 async function edit(req, res) {
-    const note = await Note.findById(req.params.id).populate('wine')
-    res.render('notes/edit', { title: 'Edit Your Note', note })
+    const wine = await Wine.findById(req.params.id)
+    console.log(wine)
+    const note = wine.notes.id(req.params.nid)
+    res.render('notes/edit', { title: 'Edit Your Note', wine, note })
 }
 
 async function update(req, res) {
-    const note = await Note.findById(req.params.id)
+    const wine = await Wine.findById(req.params.id)
+    const note = wine.notes.id(req.params.nid)
     note.vintage = req.body.vintage
     note.rating = req.body.rating
     note.body = req.body.body
-    console.log(note)
     try {
-        await note.save()
-        res.redirect(`/wines/${note.wine}`)
+        await wine.save()
+        res.redirect(`/wines/${wine._id}`)
     } catch (err) {
         console.log(err)
-        res.render('notes/edit', { errorMsg: err.message })
+        res.render('notes/edit', { errorMsg: err.message, wine, note })
     }
 }
 
 async function warn(req, res) {
-    const note = await Note.findById(req.params.id)
-    res.render('notes/warning', {title: 'Confirm Delete?', note})
+    const wine = await Wine.findById(req.params.id)
+    const note = wine.notes.id(req.params.nid)
+    res.render('notes/warning', {title: 'Confirm Delete?', wine, note})
 }
 
 async function deleteNote(req, res) {
-    const note = await Note.findById({ '_id': req.params.id })
+    const wine = await Wine.findById(req.params.id)
+    if (!wine) return res.redirect('/wines/index')
+    const note = wine.notes.pull(req.params.nid)
     if (!note) return res.redirect('/wines/index')
-    const wineId = note.wine
-    await Note.deleteOne({ '_id': req.params.id})
-    res.redirect(`/wines/${wineId}`)
+    await wine.save()
+    res.redirect(`/wines/${wine._id}`)
   }

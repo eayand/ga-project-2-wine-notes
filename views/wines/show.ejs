@@ -62,7 +62,7 @@
         <a href="/wines/<%= wine._id %>/notes/new"><button class="multi-button">New Note</button></a>
     </div>
     <div class="notes-container">
-        <% if (notes) { %> 
+        <% if (notes.length) { %> 
             <% notes.forEach(function(n) { %>
             <div class="note value-d">
                 <div class="note-header">
@@ -70,7 +70,7 @@
                         <% const created = n.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
                         <%= n.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
                     </div>
-                    <a href="<%- `/notes/${n._id}/edit` %>"><button class="light-button">Edit</button></a>
+                    <a href="/wines/<%= wine._id %>/notes/<%= n._id %>/edit"><button class="light-button">Edit</button></a>
                 </div>
                 <% const updated = n.updatedAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
                 <% if (updated !== created) {%>

@@ -4,11 +4,11 @@
 <h1 class="raleway">Permanently delete this note?</h1>
 
 <div class="yes-no">
-<form action="/notes/<%= note._id %>?_method=DELETE" method="POST">
+<form action="/wines/<%= wine._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
 <button class="extra-large-button" type="submit">Delete</button>
 </form>
 
-<a href="/notes/<%= note._id %>/edit"><button class="extra-large-button">Cancel</button></a>
+<a href="/wines/<%= wine._id %>/notes/<%= note._id %>/edit"><button class="extra-large-button">Cancel</button></a>
 </div>
 
 <%- include('../partials/footer') %>

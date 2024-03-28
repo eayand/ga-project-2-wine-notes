@@ -1,8 +1,8 @@
 <%- include('../partials/header') %>
 
-<h2><span class="raleway">My Thoughts on  </span><%= note.wine.name %></h2>
+<h2><span class="raleway">My Thoughts on  </span><%= wine.name %></h2>
 
-<form id="edit-note-form" action="/notes/<%= note._id %>?_method=PUT" method="POST">
+<form id="edit-note-form" action="/wines/<%= wine._id %>/notes/<%= note._id %>?_method=PUT" method="POST">
 
     <label class="raleway-bold">Vintage</label>
     <select name="vintage" class="note-vintage">
@@ -35,7 +35,7 @@
 </form>
 
 <br>
-<a href="/notes/<%= note._id %>/delete"><button class="large-button">Delete This Note</button></a>
+<a href="/wines/<%= wine._id %>/notes/<%= note._id %>/delete"><button class="large-button">Delete This Note</button></a>
 </form>
 
 <%- include('../partials/footer') %>
