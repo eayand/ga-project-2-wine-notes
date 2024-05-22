@@ -6,7 +6,7 @@
 <form id="change-type-name" action="/types/<%= type._id %>?_method=PUT" method="POST">
     
     <label class="raleway-bold">Change Name?</label><br>
-    <input class="type-edit" type="text" name="name" value="<%= type.name %>">
+    <input required class="type-edit" type="text" name="name" value="<%= type.name %>">
 
     <input type="submit" value="Save">
 </form>

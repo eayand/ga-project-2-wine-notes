@@ -5,7 +5,7 @@
 <form id="edit-vendor-form" action="/vendors/<%= vendor._id %>?_method=PUT" method="POST">
     
     <label class="raleway-bold">Name</label><br>
-    <input class="vendor-name-edit" type="text" name="name" value="<%= vendor.name %>">
+    <input required class="vendor-name-edit" type="text" name="name" value="<%= vendor.name %>">
     <br><br>
 
     <label class="raleway-bold">Address</label><br>
