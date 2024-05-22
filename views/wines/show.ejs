@@ -1,12 +1,12 @@
 <%- include('../partials/header') %>
 
-<h1> <a href="/wines/<%= wine._id %>/edit"><%= wine.name %></a></h1>
+<h1 > <a class="black" href="/wines/<%= wine._id %>/edit"><%= wine.name %></a></h1>
 
 <section id="wine-top">
     <div id="wine-type">
 
         <div class="label-d button-label">
-            <p class="label-p raleway-bold"><a href="/wines/<%= wine._id %>/types">Type </a></p>
+            <p class="label-p raleway-bold"><a class="black" href="/wines/<%= wine._id %>/types">Type </a></p>
             
         </div>
         <div class="value-d">
@@ -18,7 +18,7 @@
     </div>
     <div id="wine-maker">
         <div class="label-d button-label">
-            <p class="label-p raleway-bold"><a href="/wines/<%= wine._id %>/makers"> Maker </a></p>
+            <p class="label-p raleway-bold"><a class="black" href="/wines/<%= wine._id %>/makers"> Maker </a></p>
             
         </div>
         <div class="value-d">
@@ -41,7 +41,7 @@
 
 <section>
     <div class="label-d, button-label">
-        <p class="label-p, raleway-bold"><a href="/wines/<%= wine._id %>/vendors">Vendors </a></p>
+        <p class="label-p, raleway-bold"><a class="black" href="/wines/<%= wine._id %>/vendors">Vendors </a></p>
         
     </div>
     <div class="value-d, multi">
@@ -85,7 +85,12 @@
 
                 <div class="note-mid">
                     <div class="vintage">
-                        <span class="raleway">Vintage: </span><%= n.vintage %>
+                        <span class="raleway">Vintage: </span>
+                        <% if (n.vintage === 0) {%>
+                            ?
+                        <% } else {%>
+                            <%= n.vintage %>
+                        <% } %>
                     </div>
 
                     <div class="rating">
@@ -100,7 +105,7 @@
             <% }) %>
         <% } %>
     </div>
-</section><br>
+</section><br><br>
 
 <a href="/wines/<%= wine._id %>/delete"><button class="large-button">Delete This Wine</button></a>
 </form>

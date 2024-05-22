@@ -107,6 +107,10 @@ table {
   width: 100%;
 }
 
+.black {
+  color: black;
+}
+
 .index-page-body {
   display: flex;
   flex-direction: column;
@@ -128,10 +132,6 @@ table {
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-}
-
-h2 {
-  display: inline;
 }
 
 .inline {
@@ -169,6 +169,7 @@ nav {
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-end;
+  margin-bottom: 1rem;
 }
 
 nav>a {
@@ -273,6 +274,14 @@ nav>a.active {
   flex-wrap: nowrap;
   border: 5px solid #dcc9d4;
   border-radius: 15px;
+}
+
+.plain {
+  background-color: #be9ab0;
+}
+
+span.size-20 {
+  font-size: 2rem;
 }
 
 #wine-rating {

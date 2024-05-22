@@ -7,14 +7,14 @@
 
 <form id="new-type-form" action="/wines/<%= wine._id %>/types/new" method="POST">
   <label class="raleway-bold">Add New Type: </label><br>
-  <input type="text" name="name" class="type-input">
+  <input required type="text" name="name" class="type-input">
   <input type="submit" value="Add">
 </form><br>
 
 <form id="add-saved-type" action="/wines/<%= wine._id %>/types" method="POST">
   <label class="raleway-bold">Choose Saved Type: </label><br>
-  <select name="typeId" class="type-input">
-    <option value="blank"></option>
+  <select required name="typeId" class="type-input">
+    <option value=""></option>
     <%- types.map(t => 
       `<option value="${t._id}">${t.name}</option>`
       ).join('') %>

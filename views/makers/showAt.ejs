@@ -7,14 +7,14 @@
 
 <form id="new-maker-form" action="/wines/<%= wine._id %>/makers/new" method="POST">
   <label class="raleway-bold">Create New Maker: </label><br>
-  <input type="text" name="name" class="type-input">
+  <input required type="text" name="name" class="type-input">
   <input type="submit" value="Add">
 </form><br>
 
 <form id="add-saved-maker" action="/wines/<%= wine._id %>/makers" method="POST">
   <label class="raleway-bold">Choose Saved Maker: </label><br>
-  <select name="makerId" class="type-input">
-    <option value="blank"></option>
+  <select required name="makerId" class="type-input">
+    <option value=""></option>
     <%- makers.map(m => 
       `<option value="${m._id}">${m.name}</option>`
       ).join('') %>

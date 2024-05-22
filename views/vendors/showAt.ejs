@@ -22,15 +22,15 @@
 
 <form id="new-vendor-form" action="/wines/<%= wine._id %>/vendors" method="POST">
   <label class="raleway-bold">Create New Vendor: </label>
-  <input type="text" name="name">
+  <input required type="text" name="name">
   <input type="submit" value="Add">
 </form>
 <br>
 
 <form id="add-saved-vendor" action="/wines/<%= wine._id %>/vendors/associate" method="POST">
     <label class="raleway-bold">Choose Existing Vendor: </label>
-    <select name="vendorId">
-      <option value="blank"></option>
+    <select required name="vendorId">
+      <option value=""></option>
         <% vendors.forEach(function(v) { %>
             <option value="<%= v._id %>"><%= v.name %></option>
         <%}) %>
