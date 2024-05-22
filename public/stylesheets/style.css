@@ -98,14 +98,6 @@ button:hover {
   border-color: white;
 }
 
-/* .table-container {
-  overflow-x: scroll;
-} */
-
-table {
-  margin: auto;
-  width: 100%;
-}
 
 .black {
   color: black;
@@ -134,6 +126,17 @@ table {
   gap: 1rem;
 }
 
+.table-container {
+  /* overflow-x: scroll; */
+  margin-left: 2rem;
+  /* margin-right: 2rem; */
+}
+
+table {
+  margin: auto;
+  width: 100%;
+}
+
 .inline {
   display: inline;
 }
@@ -145,10 +148,22 @@ table {
 
 .home-button {
   font-size: 2.5rem;
+  padding: .5rem;
 }
 
 .home2 {
   font-size: 2.5rem;
+}
+
+.login-bottom {
+  height: 3rem;
+  background-color: #a78399;
+  width: 100vw;
+}
+
+.login-deco {
+  color: #a78399;
+  line-height: 2rem;
 }
 
 /* end temporary */
@@ -163,12 +178,14 @@ table {
 }
 
 nav {
-  height: 5.5vh;
+  height: 2.5rem;
+  width: 100%;
   background-color: #a78399;
   color: black;
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-end;
+  margin: 0;
   margin-bottom: 1rem;
 }
 

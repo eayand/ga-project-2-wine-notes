@@ -7,7 +7,7 @@
 <form id="edit-vendor-form" action="/wines/<%= wine._id %>?_method=PUT" method="POST">
     
     <label class="raleway-bold">Name</label>
-    <input required type="text" name="name" value="<%= wine.name %>" id="name-change">
+    <input required type="text" name="name" value="<%= wine.name %>" id="name-change" data-lpignore="true" data-1p-ignore="true">
 
     <input type="submit" value="Save Changes">
 

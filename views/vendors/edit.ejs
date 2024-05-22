@@ -5,11 +5,11 @@
 <form id="edit-vendor-form" action="/vendors/<%= vendor._id %>?_method=PUT" method="POST">
     
     <label class="raleway-bold">Name</label><br>
-    <input required class="vendor-name-edit" type="text" name="name" value="<%= vendor.name %>">
+    <input required class="vendor-name-edit" type="text" name="name" value="<%= vendor.name %>" data-lpignore="true" data-1p-ignore="true">
     <br><br>
 
     <label class="raleway-bold">Address</label><br>
-    <textarea name="address" class="vendor-address-edit" cols="30" rows="10"><%= vendor.address %></textarea>
+    <textarea name="address" class="vendor-address-edit" cols="30" rows="10" data-lpignore="true" data-1p-ignore="true"><%= vendor.address %></textarea>
     <br><br>
 
     <label class="raleway-bold">Thoughts</label><br>
