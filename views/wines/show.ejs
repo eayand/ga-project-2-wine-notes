@@ -1,23 +1,25 @@
 <%- include('../partials/header') %>
 
-<h1><%= wine.name %></h1>
+<h1><%= wine.name %> <a href="/wines/<%= wine._id %>/edit"><span class="material-symbols-outlined no-space">edit</span></a></h1>
 
 <section id="wine-top">
     <div id="wine-type">
+
         <div class="label-d button-label">
-            <p class="label-p raleway-bold">Type</p>
-            <a href="/wines/<%= wine._id %>/types"><button>Edit</button></a>
+            <p class="label-p raleway-bold">Type <a href="/wines/<%= wine._id %>/types"><span class="material-symbols-outlined no-space">edit</span></a></p>
+            
         </div>
         <div class="value-d">
             <% if (wine.type) { %> 
                 <p class="value-p"><%= wine.type.name %></p>
             <% } %>
         </div>
+        
     </div>
     <div id="wine-maker">
         <div class="label-d button-label">
-            <p class="label-p raleway-bold">Maker</p>
-            <a href="/wines/<%= wine._id %>/makers"><button>Edit</button></a>
+            <p class="label-p raleway-bold">Maker <a href="/wines/<%= wine._id %>/makers"><span class="material-symbols-outlined no-space">edit</span></a></p>
+            
         </div>
         <div class="value-d">
             <% if (wine.maker) { %> 
@@ -39,8 +41,8 @@
 
 <section>
     <div class="label-d, button-label">
-        <p class="label-p, raleway-bold">Vendors</p>
-        <a href="/wines/<%= wine._id %>/vendors"><button class="multi-button">Edit</button></a>
+        <p class="label-p, raleway-bold">Vendors <a href="/wines/<%= wine._id %>/vendors"><span class="material-symbols-outlined no-space">edit</span></a></p>
+        
     </div>
     <div class="value-d, multi">
         <% if (wine.vendors.length) { %> 
@@ -57,9 +59,11 @@
 
 
 <section>
-    <div class="label-d button-label">
-        <p class="label-p, raleway-bold">Notes</p>
-        <a href="/wines/<%= wine._id %>/notes/new"><button class="multi-button">New Note</button></a>
+    <div class="label-d button-label notes-label">
+        <p class="label-p, raleway-bold ">Notes</p>
+        <a href="/wines/<%= wine._id %>/notes/new"><span class="material-symbols-outlined bottom-space">
+            note_add
+            </span></a>
     </div>
     <div class="notes-container">
         <% if (notes.length) { %> 
@@ -70,7 +74,7 @@
                         <% const created = n.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
                         <%= n.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
                     </div>
-                    <a href="/wines/<%= wine._id %>/notes/<%= n._id %>/edit"><button class="light-button">Edit</button></a>
+                    <a href="/wines/<%= wine._id %>/notes/<%= n._id %>/edit"><span class="material-symbols-outlined">edit</span></a>
                 </div>
                 <% const updated = n.updatedAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
                 <% if (updated !== created) {%>
@@ -106,3 +110,6 @@
 </form>
 
 <%- include('../partials/footer') %>
+
+
+<!-- Make the edit option show up as its own paragraph that aways stays last. -->

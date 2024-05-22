@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  font: 14px "Kite One","Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 1rem "Kite One", Helvetica, Arial, sans-serif;
   background-color: #be9ab0;
 }
 
@@ -13,7 +13,7 @@ main {
 }
 
 footer {
-  height: 30px;
+  height: 5rem;
 }
 
 .kiteone {
@@ -85,6 +85,8 @@ button:hover {
   border-color: white;
 }
 
+
+/* start temporary */
 .home1 {
  font-size: 3rem;
 }
@@ -96,6 +98,8 @@ button:hover {
 .home2 {
   font-size: 2.5rem;
 }
+/* end temporary */
+
 
 .yes-no {
   display: flex;
@@ -142,6 +146,32 @@ nav > a.active {
   margin: 0 auto;
   justify-content: center;
   text-align: center;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 500,
+  'GRAD' 0,
+  'opsz' 40;
+  /* color: black; */
+  font-size: 1.2rem;
+}
+
+.material-symbols-outlined:hover {
+  color: white;
+}
+
+.no-space {
+  height: 1rem;
+  line-height: 1.2rem;
+  /* overflow: hidden; */
+  color:#6e3b5b
+}
+
+.bottom-space {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
 }
 
 #wine-top {
@@ -227,8 +257,8 @@ nav > a.active {
 
 .button-label {
   display: flex;
-  justify-content: center;
-  /* justify-content: flex-start; */
+  /* justify-content: center; */
+  justify-content: flex-start;
   gap: 15px;
   flex-wrap: nowrap;
 }
@@ -240,8 +270,8 @@ nav > a.active {
 .multi {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  /* justify-content: flex-start; */
+  /* justify-content: center; */
+  justify-content: flex-start;
   gap: 10px;
   border: none;
   padding: none;
@@ -257,6 +287,10 @@ nav > a.active {
 .notes-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+}
+
+.notes-label {
   justify-content: center;
 }
 

@@ -9,21 +9,21 @@ module.exports = {
     update,
     warn,
     delete: deleteMaker,
- }
+}
 
- async function create(req, res) {
+async function create(req, res) {
     req.body.name = req.body.name.trim()
     req.body.user = req.user._id
     try {
-          const maker = await Maker.create(req.body)
-          const wine = await Wine.findById(req.params.id)
-          await maker.save()
-          wine.maker = maker
-          await wine.save()
-          res.redirect(`/wines/${wine._id}`)
+        const maker = await Maker.create(req.body)
+        const wine = await Wine.findById(req.params.id)
+        await maker.save()
+        wine.maker = maker
+        await wine.save()
+        res.redirect(`/wines/${wine._id}`)
     } catch (err) {
-          console.log(err)
-          res.render('wines/show', { errorMsg: err.message })
+        console.log(err)
+        res.render('wines/show', { errorMsg: err.message })
     }
 }
 
@@ -33,7 +33,7 @@ async function show(req, res) {
     res.render('makers/show', { title: maker.name, maker, wines })
 }
 
- async function showAt(req, res) {
+async function showAt(req, res) {
     const wine = await Wine.findById(req.params.id)
     const makers = await Maker.find({ 'user': req.user._id })
     res.render('makers/showAt', {
