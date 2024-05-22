@@ -1,12 +1,12 @@
 <%- include('../partials/header') %>
 
-<h1><%= wine.name %> <a href="/wines/<%= wine._id %>/edit"><span class="material-symbols-outlined no-space">edit</span></a></h1>
+<h1> <a href="/wines/<%= wine._id %>/edit"><%= wine.name %></a></h1>
 
 <section id="wine-top">
     <div id="wine-type">
 
         <div class="label-d button-label">
-            <p class="label-p raleway-bold">Type <a href="/wines/<%= wine._id %>/types"><span class="material-symbols-outlined no-space">edit</span></a></p>
+            <p class="label-p raleway-bold"><a href="/wines/<%= wine._id %>/types">Type </a></p>
             
         </div>
         <div class="value-d">
@@ -18,7 +18,7 @@
     </div>
     <div id="wine-maker">
         <div class="label-d button-label">
-            <p class="label-p raleway-bold">Maker <a href="/wines/<%= wine._id %>/makers"><span class="material-symbols-outlined no-space">edit</span></a></p>
+            <p class="label-p raleway-bold"><a href="/wines/<%= wine._id %>/makers"> Maker </a></p>
             
         </div>
         <div class="value-d">
@@ -41,7 +41,7 @@
 
 <section>
     <div class="label-d, button-label">
-        <p class="label-p, raleway-bold">Vendors <a href="/wines/<%= wine._id %>/vendors"><span class="material-symbols-outlined no-space">edit</span></a></p>
+        <p class="label-p, raleway-bold"><a href="/wines/<%= wine._id %>/vendors">Vendors </a></p>
         
     </div>
     <div class="value-d, multi">
@@ -103,10 +103,6 @@
 </section><br>
 
 <a href="/wines/<%= wine._id %>/delete"><button class="large-button">Delete This Wine</button></a>
-</form>
-<br>
-<br>
-<a href="/wines/<%= wine._id %>/edit"><button class="large-button">Change Name</button></a>
 </form>
 
 <%- include('../partials/footer') %>

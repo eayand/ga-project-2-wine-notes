@@ -7,23 +7,23 @@ module.exports = {
     update,
     warn,
     delete: deleteNote,
- }
+}
 
- async function newNote(req, res) {
+async function newNote(req, res) {
     const wine = await Wine.findById(req.params.id)
     res.render('notes/new', { title: `Note on ${wine.name}`, wine, errorMsg: '' })
 }
 
- async function create(req, res) {
-     const wine = await Wine.findById(req.params.id)
-     req.body.user = req.user._id
+async function create(req, res) {
+    const wine = await Wine.findById(req.params.id)
+    req.body.user = req.user._id
     try {
         wine.notes.push(req.body)
         await wine.save()
         res.redirect(`/wines/${wine._id}`)
     } catch (err) {
-          console.log(err)
-          res.render('notes/new', { errorMsg: err.message })
+        console.log(err)
+        res.render('notes/new', { errorMsg: err.message })
     }
 }
 
@@ -52,7 +52,7 @@ async function update(req, res) {
 async function warn(req, res) {
     const wine = await Wine.findById(req.params.id)
     const note = wine.notes.id(req.params.nid)
-    res.render('notes/warning', {title: 'Confirm Delete?', wine, note})
+    res.render('notes/warning', { title: 'Confirm Delete?', wine, note })
 }
 
 async function deleteNote(req, res) {
@@ -62,4 +62,4 @@ async function deleteNote(req, res) {
     if (!note) return res.redirect('/wines/index')
     await wine.save()
     res.redirect(`/wines/${wine._id}`)
-  }
+}

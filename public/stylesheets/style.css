@@ -8,9 +8,9 @@ body {
   background-color: #be9ab0;
 }
 
-main {
+/* main {
   max-width: 600px;
-}
+} */
 
 footer {
   height: 5rem;
@@ -33,6 +33,18 @@ footer {
   font-size: .7rem;
 }
 
+.normal {
+  font-size: 1rem;
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+}
+
 a {
   color: #44052b;
   text-decoration: none;
@@ -49,7 +61,8 @@ button {
   border-radius: 10px;
 }
 
-input, textarea {
+input,
+textarea {
   background-color: #dcc9d4;
   color: #44052b;
   border: solid #44052b;
@@ -85,10 +98,49 @@ button:hover {
   border-color: white;
 }
 
+/* .table-container {
+  overflow-x: scroll;
+} */
+
+table {
+  margin: auto;
+  width: 100%;
+}
+
+.index-page-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.index-page-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.index-page-new-form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+h2 {
+  display: inline;
+}
+
+.inline {
+  display: inline;
+}
 
 /* start temporary */
 .home1 {
- font-size: 3rem;
+  font-size: 3rem;
 }
 
 .home-button {
@@ -98,6 +150,7 @@ button:hover {
 .home2 {
   font-size: 2.5rem;
 }
+
 /* end temporary */
 
 
@@ -118,7 +171,7 @@ nav {
   justify-content: flex-end;
 }
 
-nav > a {
+nav>a {
   /* margin: 20px; */
   text-decoration: none;
   padding: 10px;
@@ -126,12 +179,12 @@ nav > a {
   border-radius: 5px;
 }
 
-nav > a:hover:not(.active) {
+nav>a:hover:not(.active) {
   color: white;
   background-color: #44052b;
 }
 
-nav > a.active {
+nav>a.active {
   color: white;
   cursor: default;
 }
@@ -150,10 +203,10 @@ nav > a.active {
 
 .material-symbols-outlined {
   font-variation-settings:
-  'FILL' 0,
-  'wght' 500,
-  'GRAD' 0,
-  'opsz' 40;
+    'FILL' 0,
+    'wght' 500,
+    'GRAD' 0,
+    'opsz' 40;
   /* color: black; */
   font-size: 1.2rem;
 }
@@ -166,7 +219,7 @@ nav > a.active {
   height: 1rem;
   line-height: 1.2rem;
   /* overflow: hidden; */
-  color:#6e3b5b
+  color: #6e3b5b
 }
 
 .bottom-space {
@@ -185,7 +238,8 @@ nav > a.active {
   margin-top: .1rem;
 }
 
-#wine-type, #wine-maker {
+#wine-type,
+#wine-maker {
   /* border: solid #44052b; */
   margin: 10px 10px 0 10px;
   padding: 0 1vw;
@@ -340,13 +394,15 @@ nav > a.active {
   display: flex;
   justify-content: space-evenly;
   gap: 40px;
+  flex-wrap: wrap;
 }
 
 td {
   padding: 0 3px;
 }
 
-#new-wine-form-at-index, #new-vendor-form-at-index {
+#new-wine-form-at-index,
+#new-vendor-form-at-index {
   display: flex;
   justify-content: flex-end;
   gap: 5px;
@@ -382,11 +438,12 @@ td {
   margin-bottom: .5rem;
 }
 
-#new-vendor-form > input {
+#new-vendor-form>input {
   height: 1.6rem;
 }
 
-.vendor-name-edit, .vendor-address-edit {
+.vendor-name-edit,
+.vendor-address-edit {
   height: 2rem;
   width: 18rem;
 }
@@ -439,13 +496,12 @@ td {
   margin: 0 auto;
 }
 
-/* from CSS Tricks */
-
 input[type=range] {
   -webkit-appearance: none;
   margin: 18px 0;
   width: 90%;
 }
+
 input[type=range]:focus {
   outline: none;
 }
@@ -457,6 +513,7 @@ input[type=range]::-webkit-slider-runnable-track {
   border-radius: 1.3px;
   /* border: solid #44052b; */
 }
+
 input[type=range]::-webkit-slider-thumb {
   border: solid #44052b;
   height: 2rem;

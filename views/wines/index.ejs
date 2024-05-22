@@ -1,66 +1,81 @@
 <%- include('../partials/header') %>
 
     <div class="index-header">
-        <h2><%= title %></h2>
+        <h2>
+            <%= title %>
+        </h2>
         <form id="new-wine-form-at-index" action="/wines" method="POST">
             <label class="raleway-bold">Add a New Wine: </label><br>
             <input type="text" name="name">
-         <input type="submit" value="Add">
+            <input type="submit" value="Add">
         </form>
     </div>
-  <br>
+    <br>
 
-<table id="wine-list" class="index-table">
-    <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Maker</th>
-          <th>Vendors</th>
-          <th>Added</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% wines.forEach(function(w) { %>
-            <tr>
-            <td>
-                <% if (w.name) { %> 
-                <a href="/wines/<%= w._id %>"><button><%= w.name %></button></a>
-                <% } %>
-            </td>
+    <div class="table-container">
+        <table id="wine-list" class="index-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Maker</th>
+                    <th>Vendors</th>
+                    <th>Added</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% wines.forEach(function(w) { %>
+                    <tr>
+                        <td>
+                            <% if (w.name) { %>
+                                <a href="/wines/<%= w._id %>"><button>
+                                        <%= w.name %>
+                                    </button></a>
+                                <% } %>
+                        </td>
 
-            <td>
-                <% if (w.type) { %> 
-                <a href="/types/<%= w.type._id %>"><button><%= w.type.name %></button></a>
-                <% } %>
-            </td>
+                        <td>
+                            <% if (w.type) { %>
+                                <a href="/types/<%= w.type._id %>"><button>
+                                        <%= w.type.name %>
+                                    </button></a>
+                                <% } %>
+                        </td>
 
-            <td>
-                <% if (w.maker) { %> 
-                <a href="/makers/<%= w.maker._id%>"><button><%= w.maker.name %></button></a>
-                <% } %>
-            </td>
+                        <td>
+                            <% if (w.maker) { %>
+                                <a href="/makers/<%= w.maker._id%>"><button>
+                                        <%= w.maker.name %>
+                                    </button></a>
+                                <% } %>
+                        </td>
 
-            <td>
-                <% if (w.vendors) { %> 
-                    <% w.vendors.forEach(function(v) {%>
-                        <% if (v.name) { %>
-                            <a href="/vendors/<%= v._id%>"><button><%= v.name %></button></a>
-                        <% } %>
+                        <td>
+                            <% if (w.vendors) { %>
+                                <% w.vendors.forEach(function(v) {%>
+                                    <% if (v.name) { %>
+                                        <a href="/vendors/<%= v._id%>"><button>
+                                                <%= v.name %>
+                                            </button></a>
+                                        <% } %>
+                                            <% }) %>
+
+                                                <% } %>
+                        </td>
+
+                        <td>
+                            <% if (w.createdAt) { %>
+                                <p class="raleway">
+                                    <%= w.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long",
+                                        day:"numeric"}) %>
+                                </p>
+                                <% } %>
+                        </td>
+
+                    </tr>
                     <% }) %>
-                
-                <% } %>
-            </td>
+            </tbody>
+        </table>
+    </div>
 
-            <td>
-                <% if (w.createdAt) { %> 
-                <p class="raleway"><%= w.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %></p>
-                <% } %>
-            </td>
-
-        </tr>
-        <% }) %>
-    </tbody>
-</table>
-
-<%- include('../partials/footer') %>
+    <%- include('../partials/footer') %>

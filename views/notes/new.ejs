@@ -1,7 +1,6 @@
 <%- include('../partials/header') %>
 
 <h2><span class="raleway">My Thoughts on  </span><%= wine.name %></h2>
-<h3 class="raleway"><%= new Date().toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %></h3>
 
 <form id="new-note-form" action="/wines/<%= wine._id %>/notes" method="POST">
 
@@ -29,7 +28,7 @@
         <br><br>
 
     <label class="raleway-bold">Notes</label><br>
-    <textarea name="body" class="note-body" cols="30" rows="30"></textarea><br><br><br>
+    <textarea name="body" class="note-body" cols="30" rows="20"></textarea><br><br><br>
 
     <input type="submit" value="Save Note">
 
