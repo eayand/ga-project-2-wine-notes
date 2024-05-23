@@ -15,11 +15,16 @@ async function create(req, res) {
     req.body.name = req.body.name.trim()
     req.body.user = req.user._id
     try {
-        const maker = await Maker.create(req.body)
         const wine = await Wine.findById(req.params.id)
-        await maker.save()
-        wine.maker = maker
-        await wine.save()
+        const existingMaker = await Maker.find({'name': req.body.name})
+        if (existingMaker.length) {
+            wine.maker = existingMaker[0]._id
+            await wine.save()
+        } else {
+            const maker = await Maker.create(req.body)
+            wine.maker = maker
+            await wine.save()
+        }
         res.redirect(`/wines/${wine._id}`)
     } catch (err) {
         console.log(err)

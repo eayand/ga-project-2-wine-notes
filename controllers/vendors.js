@@ -13,54 +13,65 @@ module.exports = {
     remove,
     warn,
     delete: deleteVendor,
- }
+}
 
- async function create(req, res) {
+async function create(req, res) {
     req.body.name = req.body.name.trim()
     req.body.user = req.user._id
     try {
-        const vendor = await Vendor.create(req.body)
-        res.redirect('/vendors/index')
+        const existingVendor = await Vendor.find({'name': req.body.name})
+        if (existingVendor.length) {
+            res.redirect('/vendors/index')
+        } else {
+            const vendor = await Vendor.create(req.body)
+            res.redirect('/vendors/index')
+        }
     } catch (err) {
         console.log(err)
         res.render('vendors/index', { errorMsg: err.message })
     }
- }
+}
 
- async function createAt(req, res) {
+async function createAt(req, res) {
     req.body.name = req.body.name.trim()
     req.body.user = req.user._id
     try {
-          const vendor = await Vendor.create(req.body)
-          const wine = await Wine.findById(req.params.id)
-          vendor.wines.push(req.params.id)
-          await vendor.save()
-          wine.vendors.push(vendor)
-          await wine.save()
-          res.redirect(`/wines/${wine._id}/vendors`)
+        const wine = await Wine.findById(req.params.id)
+        const existingVendor = await Vendor.find({'name': req.body.name})
+        if (!existingVendor.length) {
+            const vendor = await Vendor.create(req.body)
+            vendor.wines.push(req.params.id)
+            await vendor.save()
+            wine.vendors.push(vendor._id)
+            await wine.save()
+        } else if (!wine.vendors.includes(existingVendor[0]._id)) {
+            wine.vendors.push(existingVendor[0]._id)
+            await wine.save()
+        }
+        res.redirect(`/wines/${wine._id}/vendors`)
     } catch (err) {
-          console.log(err)
-          res.render('vendors/showAt', { errorMsg: err.message })
+        console.log(err)
+        res.render('vendors/showAt', { errorMsg: err.message })
     }
 }
 
 async function index(req, res) {
     const vendors = await Vendor.find({ 'user': req.user._id }).populate('wines').sort('name')
-        res.render('vendors/index', {
-            title: 'My Vendor List', 
-            vendors
+    res.render('vendors/index', {
+        title: 'My Vendor List',
+        vendors
     })
 }
 
 async function show(req, res) {
     const vendor = await Vendor.findById(req.params.id).populate('wines')
-    res.render('vendors/show', {title: vendor.name, vendor})
+    res.render('vendors/show', { title: vendor.name, vendor })
 }
 
- async function showAt(req, res) {
+async function showAt(req, res) {
     const wine = await Wine.findById(req.params.id)
     const wineVendors = await Vendor.find({ 'wines': wine })
-    const vendors = await Vendor.find({ 'user': req.user._id})
+    const vendors = await Vendor.find({ 'user': req.user._id, _id: {$nin: wine.vendors} })
     res.render('vendors/showAt', {
         title: 'Vendors',
         errorMsg: '',
@@ -69,11 +80,10 @@ async function show(req, res) {
         vendors,
     })
 }
-// USE THIS SHOWAT FUNCTION AS A MODEL FOR HOW TO PREVENT THE OTHER FUNCTIONS THAT PASS EXISTING VALUES TO A VIEW FROM PULLING ANY THAT DON'T BELONG TO THAT USER; The user _id should always be one of the filters in .find()
 
 async function edit(req, res) {
     const vendor = await Vendor.findById(req.params.id).populate('wines')
-    res.render('vendors/edit', {title: 'Edit Vendor', vendor})
+    res.render('vendors/edit', { title: 'Edit Vendor', vendor })
 }
 
 async function update(req, res) {
@@ -130,12 +140,12 @@ async function remove(req, res) {
 
 async function warn(req, res) {
     const vendor = await Vendor.findById(req.params.id)
-    res.render('vendors/warning', {title: 'Confirm Delete?', vendor})
+    res.render('vendors/warning', { title: 'Confirm Delete?', vendor })
 }
 
 async function deleteVendor(req, res) {
     const vendor = await Vendor.findById({ '_id': req.params.id })
     if (!vendor) return res.redirect('/vendors/index')
-    await Vendor.deleteOne({ '_id': req.params.id})
+    await Vendor.deleteOne({ '_id': req.params.id })
     res.redirect('/vendors/index')
-  }
+}

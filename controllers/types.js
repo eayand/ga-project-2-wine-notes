@@ -15,10 +15,16 @@ async function create(req, res) {
     req.body.name = req.body.name.trim()
     req.body.user = req.user._id
     try {
-        const type = await Type.create(req.body)
         const wine = await Wine.findById(req.params.id)
-        wine.type = type._id
-        await wine.save()
+        const existingType = await Type.find({'name': req.body.name})
+        if (existingType.length) {
+            wine.type = existingType[0]._id
+            await wine.save()
+        } else {
+            const type = await Type.create(req.body)
+            wine.type = type._id
+            await wine.save()
+        }
         res.redirect(`/wines/${wine._id}`)
     } catch (err) {
         console.log(err)
