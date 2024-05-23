@@ -29,8 +29,8 @@
                 <p class="label-p, raleway-bold">Wines</p>
             </div>
             <div class="value-d, multi">
-                <% if (vendor.wines.length) { %> 
-                    <% vendor.wines.forEach(function(w) { %>
+                <% if (wines.length) { %> 
+                    <% wines.forEach(function(w) { %>
                         <div>
                             <a href="/wines/<%= w._id %>"><p class="value-p"><%= w.name %></p></a>
                         </div>

@@ -1,6 +1,6 @@
 <%- include('../partials/header') %>
 
-<h2><%= title %></h2>
+<h2 class="raleway"><%= title %></h2>
 
 <form id="edit-vendor-form" action="/vendors/<%= vendor._id %>?_method=PUT" method="POST">
     
@@ -9,11 +9,11 @@
     <br><br>
 
     <label class="raleway-bold">Address</label><br>
-    <textarea name="address" class="vendor-address-edit" cols="30" rows="10" data-lpignore="true" data-1p-ignore="true"><%= vendor.address %></textarea>
+    <textarea name="address" class="vendor-address-edit" cols="30" rows="2" data-lpignore="true" data-1p-ignore="true"><%= vendor.address %></textarea>
     <br><br>
 
     <label class="raleway-bold">Thoughts</label><br>
-    <textarea name="thoughts" class="vendor-thoughts-edit" cols="30" rows="10"><%= vendor.thoughts %></textarea>
+    <textarea name="thoughts" class="vendor-thoughts-edit" cols="30" rows="5"><%= vendor.thoughts %></textarea>
 
 
     <br><br>

@@ -68,6 +68,8 @@ textarea {
   border: solid #44052b;
   border-radius: 10px;
   font-size: 1rem;
+  /* font-family: "Kite One";
+  padding: .5rem; */
 }
 
 textarea {
@@ -469,14 +471,8 @@ td {
   height: 1.6rem;
 }
 
-.vendor-name-edit,
-.vendor-address-edit {
+.vendor-name-edit {
   height: 2rem;
-  width: 18rem;
-}
-
-.vendor-thoughts-edit {
-  height: 6rem;
   width: 18rem;
 }
 

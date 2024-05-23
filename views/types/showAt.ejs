@@ -1,9 +1,9 @@
 <%- include('../partials/header') %>
 
-<h1><%= wine.name %></h1>
-<p class="raleway">What type of wine is <%= wine.name %>?</p>
-<p class="raleway">Pick from your saved types or add a new type.</p>
 <br>
+<h2>
+    <span class="raleway">What type of wine is </span><%= wine.name%> <span class="raleway">?</span>
+</h2>
 
 <form id="new-type-form" action="/wines/<%= wine._id %>/types/new" method="POST">
   <label class="raleway-bold">Add New Type: </label><br>

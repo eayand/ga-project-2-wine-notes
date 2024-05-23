@@ -24,7 +24,7 @@ async function create(req, res) {
             res.redirect('/vendors/index')
         } else {
             const vendor = await Vendor.create(req.body)
-            res.redirect('/vendors/index')
+            res.redirect(`/vendors/${vendor._id}/edit`)
         }
     } catch (err) {
         console.log(err)
@@ -40,8 +40,6 @@ async function createAt(req, res) {
         const existingVendor = await Vendor.find({'name': req.body.name})
         if (!existingVendor.length) {
             const vendor = await Vendor.create(req.body)
-            vendor.wines.push(req.params.id)
-            await vendor.save()
             wine.vendors.push(vendor._id)
             await wine.save()
         } else if (!wine.vendors.includes(existingVendor[0]._id)) {
@@ -56,22 +54,25 @@ async function createAt(req, res) {
 }
 
 async function index(req, res) {
-    const vendors = await Vendor.find({ 'user': req.user._id }).populate('wines').sort('name')
+    const vendors = await Vendor.find({ 'user': req.user._id }).sort('name')
+    const wines = await Wine.find({ 'user': req.user._id }).sort('name')
     res.render('vendors/index', {
         title: 'My Vendor List',
-        vendors
+        vendors,
+        wines
     })
 }
 
 async function show(req, res) {
-    const vendor = await Vendor.findById(req.params.id).populate('wines')
-    res.render('vendors/show', { title: vendor.name, vendor })
+    const vendor = await Vendor.findById(req.params.id)
+    const wines = await Wine.find({'vendors': req.params.id})
+    res.render('vendors/show', { title: vendor.name, vendor, wines })
 }
 
 async function showAt(req, res) {
     const wine = await Wine.findById(req.params.id)
-    const wineVendors = await Vendor.find({ 'wines': wine })
-    const vendors = await Vendor.find({ 'user': req.user._id, _id: {$nin: wine.vendors} })
+    const wineVendors = await Vendor.find({ _id: { $in: wine.vendors } }).sort('name')
+    const vendors = await Vendor.find({ 'user': req.user._id, _id: {$nin: wine.vendors} }).sort('name')
     res.render('vendors/showAt', {
         title: 'Vendors',
         errorMsg: '',
@@ -82,7 +83,7 @@ async function showAt(req, res) {
 }
 
 async function edit(req, res) {
-    const vendor = await Vendor.findById(req.params.id).populate('wines')
+    const vendor = await Vendor.findById(req.params.id)
     res.render('vendors/edit', { title: 'Edit Vendor', vendor })
 }
 
@@ -106,8 +107,6 @@ async function associate(req, res) {
         const vendor = await Vendor.findById(req.body.vendorId)
         wine.vendors.push(vendor)
         await wine.save()
-        vendor.wines.push(wine)
-        await vendor.save()
         res.redirect(`/wines/${wine._id}/vendors`)
     } catch (err) {
         console.log(err)
@@ -120,19 +119,14 @@ async function associate(req, res) {
 async function remove(req, res) {
     try {
         const wine = await Wine.findById(req.params.id)
-        const vendor = await Vendor.findById(req.params.vid)
-        const wineRef = vendor.wines.indexOf(wine)
-        const vendorRef = wine.vendors.indexOf(vendor)
-        vendor.wines.splice(wineRef, 1)
+        const vendorRef = wine.vendors.indexOf(req.params.vid)
         wine.vendors.splice(vendorRef, 1)
         await wine.save()
-        await vendor.save()
         res.redirect(`/wines/${wine._id}/vendors`)
     } catch (err) {
         console.log(err)
         const wine = await Wine.findById(req.params.id)
         const vendor = await Vendor.findById(req.params.vid)
-        const wineRef = vendor.wines.indexOf(wine)
         const vendorRef = wine.vendors.indexOf(vendor)
         res.render('vendors/show', { errorMsg: err.message, title: 'Error' })
     }

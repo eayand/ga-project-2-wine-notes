@@ -43,15 +43,13 @@
                 <%= v.thoughts %>
               </td>
               <td>
-                <% if (v.wines) { %>
-                  <% v.wines.forEach(function(w) {%>
-                    <% if (w.name) { %>
-                      <a href="/wines/<%= w._id%>"><button>
-                          <%= w.name %>
-                        </button></a>
-                      <% } %>
-                        <% }) %>
-                          <% } %>
+                <% wines.forEach(function(w) { %>
+                  <% if( w.vendors.includes(v._id)) { %>
+                    <a href="/wines/<%= w._id%>"><button>
+                      <%= w.name %>
+                    </button></a>
+                  <% } %>
+                <% }) %>
               </td>
             </tr>
             <% }) %>
