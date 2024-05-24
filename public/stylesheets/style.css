@@ -6,7 +6,7 @@ body {
   margin: 0;
   font: 1rem "Kite One", Helvetica, Arial, sans-serif;
   background-color: #be9ab0;
-  width: 100vw;
+  max-width: 100vw;
 }
 
 /* main {
@@ -58,7 +58,7 @@ a:hover {
 button {
   background-color: #be9ab0;
   color: #44052b;
-  border: solid #44052b;
+  border: .1rem solid #44052b;
   border-radius: 10px;
 }
 
@@ -224,10 +224,9 @@ nav>a.active {
 }
 
 #outer-limit {
-  padding: 10px;
+  padding: 1rem;
   display: flex;
   justify-content: center;
-
 }
 
 #inner-limit {
@@ -277,7 +276,7 @@ nav>a.active {
 #wine-type,
 #wine-maker {
   /* border: solid #44052b; */
-  margin: 10px 10px 0 10px;
+  margin: .5rem .5rem 0 .5rem;
   padding: 0 1vw;
 }
 
@@ -287,7 +286,7 @@ nav>a.active {
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: flex-end;
-  padding-top: 5px;
+  padding-top: .2rem;
   margin-bottom: 0;
 }
 
@@ -307,7 +306,8 @@ nav>a.active {
 
 .value-p {
   flex-wrap: nowrap;
-  border: 5px solid #dcc9d4;
+  border: .3rem solid #dcc9d4;
+  /* border: 5px solid #dcc9d4; */
   border-radius: 15px;
 }
 
@@ -339,8 +339,20 @@ span.size-20 {
   align-items: center;
   justify-content: center;
   padding: 0;
-  border: 1.8px solid black;
+  border: .1rem solid black;
+  background-color: #dcc9d4;
 }
+/* .value-d {
+  flex-wrap: nowrap;
+  background-color: #dcc9d4;
+  border-radius: 15px;
+  justify-content: center;
+} */
+/* .value-p {
+  flex-wrap: nowrap;
+  border: .3rem solid #dcc9d4;
+  border-radius: 15px;
+} */
 
 #avg-rating p {
   text-align: center;
@@ -420,6 +432,21 @@ span.size-20 {
 .updated {
   display: flex;
   justify-content: flex-start;
+}
+
+.vendors-outer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-shrink: 1;
+}
+
+.vendors-inner {
+  max-width: 700px;
+}
+
+.notes-width {
+  max-width: 800px;
 }
 
 /* .instructions {
@@ -528,6 +555,26 @@ td {
   max-width: 18rem;
   min-width: 18rem;
 }
+
+
+.textwrap {
+  max-inline-size: 300px;
+  overflow-wrap: break-word;
+}
+
+.center {
+  text-align: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+.wine-title {
+  margin: 1rem auto;
+}
+
 
 .slider {
   width: 90%;

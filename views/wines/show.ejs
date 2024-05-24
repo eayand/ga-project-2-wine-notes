@@ -1,116 +1,138 @@
 <%- include('../partials/header') %>
 
-<h1 > <a class="black" href="/wines/<%= wine._id %>/edit"><%= wine.name %></a></h1>
+    <h1 class="flex-center wine-title"> <a class="black" href="/wines/<%= wine._id %>/edit">
+            <p class="textwrap center wine-title">
 
-<section id="wine-top">
-    <div id="wine-type">
+                <%= wine.name %>
+            </p>
+        </a></h1>
 
-        <div class="label-d button-label">
-            <p class="label-p raleway-bold"><a class="black" href="/wines/<%= wine._id %>/types">Type </a></p>
-            
+    <section id="wine-top">
+        <div id="wine-type">
+
+            <div class="label-d button-label">
+                <p class="label-p raleway-bold"><a class="black" href="/wines/<%= wine._id %>/types">Type </a></p>
+
+            </div>
+            <div class="value-d">
+                <% if (wine.type) { %>
+                    <p class="value-p textwrap">
+                        <%= wine.type.name %>
+                    </p>
+                    <% } %>
+            </div>
+
         </div>
-        <div class="value-d">
-            <% if (wine.type) { %> 
-                <p class="value-p"><%= wine.type.name %></p>
-            <% } %>
-        </div>
-        
-    </div>
-    <div id="wine-maker">
-        <div class="label-d button-label">
-            <p class="label-p raleway-bold"><a class="black" href="/wines/<%= wine._id %>/makers"> Maker </a></p>
-            
-        </div>
-        <div class="value-d">
-            <% if (wine.maker) { %> 
-                <p class="value-p"><%= wine.maker.name %></p>
-                <% } %>
+        <div id="wine-maker">
+            <div class="label-d button-label">
+                <p class="label-p raleway-bold"><a class="black" href="/wines/<%= wine._id %>/makers"> Maker </a></p>
+
+            </div>
+            <div class="value-d">
+                <% if (wine.maker) { %>
+                    <p class="value-p textwrap">
+                        <%= wine.maker.name %>
+                    </p>
+                    <% } %>
             </div>
         </div>
         <div id="wine-rating">
             <div class="label-d" id="my-rating">
                 <p class="label-p raleway-bold">My Rating</p>
             </div>
-            <div class="value-d" id="avg-rating">
-                <% if (rating > 0) { %> 
-                    <p class="value-p"><%= rating %></p>
-                <% } %>
+            <div id="avg-rating">
+                <% if (rating> 0) { %>
+                        <%= rating %>
+                    <% } %>
             </div>
         </div>
-</section>
+    </section>
 
-<section>
-    <div class="label-d, button-label">
-        <p class="label-p, raleway-bold"><a class="black" href="/wines/<%= wine._id %>/vendors">Vendors </a></p>
-        
-    </div>
-    <div class="value-d, multi">
-        <% if (wine.vendors.length) { %> 
-            <% wine.vendors.forEach(function(v) { %>
-                <div class="vendor">
-            <p class="value-p"><%= v.name %></p>
+    <section>
+        <div class="vendors-outer">
+            <div class="vendors-inner">
+                <div class="label-d, button-label">
+                    <p class="label-p, raleway-bold"><a class="black" href="/wines/<%= wine._id %>/vendors">Vendors </a>
+                    </p>
+
                 </div>
-        <% }) %>
-        <% } %>
-    </div>
-</section><br>
-
-
-
-
-<section>
-    <div class="label-d button-label notes-label">
-        <p class="label-p, raleway-bold ">Notes</p>
-        <a href="/wines/<%= wine._id %>/notes/new"><span class="material-symbols-outlined bottom-space">
-            note_add
-            </span></a>
-    </div>
-    <div class="notes-container">
-        <% if (notes.length) { %> 
-            <% notes.forEach(function(n) { %>
-            <div class="note value-d">
-                <div class="note-header">
-                    <div class="date raleway">
-                        <% const created = n.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
-                        <%= n.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
-                    </div>
-                    <a href="/wines/<%= wine._id %>/notes/<%= n._id %>/edit"><span class="material-symbols-outlined">edit</span></a>
-                </div>
-                <% const updated = n.updatedAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
-                <% if (updated !== created) {%>
-                <div class="updated raleway small">
-                    updated <%= n.updatedAt.toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"}) %>
-                </div>
-                <% } %>
-
-                <div class="note-mid">
-                    <div class="vintage">
-                        <span class="raleway">Vintage: </span>
-                        <% if (n.vintage === 0) {%>
-                            ?
-                        <% } else {%>
-                            <%= n.vintage %>
-                        <% } %>
-                    </div>
-
-                    <div class="rating">
-                        <span class="raleway">Rating: </span><%= n.rating %>
-                    </div>
-                </div>
-
-                <div class="body">
-                    <%= n.body %>
+                <div class="value-d, multi">
+                    <% if (wine.vendors.length) { %>
+                        <% wine.vendors.forEach(function(v) { %>
+                            <div class="vendor">
+                                <p class="value-p textwrap">
+                                    <%= v.name %>
+                                </p>
+                            </div>
+                            <% }) %>
+                                <% } %>
                 </div>
             </div>
-            <% }) %>
-        <% } %>
-    </div>
-</section><br><br>
-
-<a href="/wines/<%= wine._id %>/delete"><button class="large-button">Delete This Wine</button></a>
-</form>
-
-<%- include('../partials/footer') %>
+        </div>
+    </section><br>
 
 
-<!-- Make the edit option show up as its own paragraph that aways stays last. -->
+
+
+    <section class="notes-width">
+        <div class="label-d button-label notes-label">
+            <p class="label-p, raleway-bold ">Notes</p>
+            <a href="/wines/<%= wine._id %>/notes/new"><span class="material-symbols-outlined bottom-space">
+                    note_add
+                </span></a>
+        </div>
+        <div class="notes-container">
+            <% if (notes.length) { %>
+                <% notes.forEach(function(n) { %>
+                    <div class="note value-d">
+                        <div class="note-header">
+                            <div class="date raleway">
+                                <% const created=n.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long",
+                                    day:"numeric"}) %>
+                                    <%= n.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"long",
+                                        day:"numeric"}) %>
+                            </div>
+                            <a href="/wines/<%= wine._id %>/notes/<%= n._id %>/edit"><span
+                                    class="material-symbols-outlined">edit</span></a>
+                        </div>
+                        <% const updated=n.updatedAt.toLocaleDateString('en-us', { year:"numeric", month:"long",
+                            day:"numeric"}) %>
+                            <% if (updated !==created) {%>
+                                <div class="updated raleway small">
+                                    updated <%= n.updatedAt.toLocaleDateString('en-us', { year:"numeric", month:"long",
+                                        day:"numeric"}) %>
+                                </div>
+                                <% } %>
+
+                                    <div class="note-mid">
+                                        <div class="vintage">
+                                            <span class="raleway">Vintage: </span>
+                                            <% if (n.vintage===0) {%>
+                                                ?
+                                                <% } else {%>
+                                                    <%= n.vintage %>
+                                                        <% } %>
+                                        </div>
+
+                                        <div class="rating">
+                                            <span class="raleway">Rating: </span>
+                                            <%= n.rating %>
+                                        </div>
+                                    </div>
+
+                                    <div class="body">
+                                        <%= n.body %>
+                                    </div>
+                    </div>
+                    <% }) %>
+                        <% } %>
+        </div>
+    </section><br><br>
+
+    <a href="/wines/<%= wine._id %>/delete"><button class="large-button">Delete This Wine</button></a>
+    </form>
+
+    <%- include('../partials/footer') %>
+
+
+        <!-- Make the edit option show up as its own paragraph that aways stays last. -->
