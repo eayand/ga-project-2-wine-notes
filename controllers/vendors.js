@@ -1,5 +1,6 @@
 const Wine = require('../models/wine')
 const Vendor = require('../models/vendor')
+const wine = require('../models/wine')
 
 module.exports = {
     create,
@@ -140,6 +141,12 @@ async function warn(req, res) {
 async function deleteVendor(req, res) {
     const vendor = await Vendor.findById({ '_id': req.params.id })
     if (!vendor) return res.redirect('/vendors/index')
+    const wines = await Wine.find({'vendor': req.params.id})
+    wines.forEach( function(w) {
+        const vendorRef = w.vendors.indexOf(req.params.id)
+        w.vendors.splice(vendorRef, 1)
+        w.save()
+    } )
     await Vendor.deleteOne({ '_id': req.params.id })
     res.redirect('/vendors/index')
 }

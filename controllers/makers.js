@@ -77,6 +77,8 @@ async function warn(req, res) {
 async function deleteMaker(req, res) {
     const maker = await Maker.findById({ '_id': req.params.id })
     if (!maker) return res.redirect('/wines/index')
+    const wines = await Wine.find({'maker': req.params.id})
+    wines.forEach((w) => w.updateOne({ $unset: { maker: '' } }))
     await Maker.deleteOne({ '_id': req.params.id})
     res.redirect('/wines/index')
 }

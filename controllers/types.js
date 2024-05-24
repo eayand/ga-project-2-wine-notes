@@ -77,6 +77,8 @@ async function warn(req, res) {
 async function deleteType(req, res) {
     const type = await Type.findById({ '_id': req.params.id })
     if (!type) return res.redirect('/wines/index')
+    const wines = await Wine.find({'type': req.params.id})
+wines.forEach((w) => w.updateOne({ $unset: {type: ''} }))
     await Type.deleteOne({ '_id': req.params.id })
     res.redirect('/wines/index')
 }

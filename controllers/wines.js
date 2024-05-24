@@ -1,7 +1,6 @@
 const Wine = require('../models/wine')
 
 module.exports = {
-      new: newWine,
       create,
       show,
       edit,
@@ -9,12 +8,6 @@ module.exports = {
       index,
       warn,
       delete: deleteWine,
-}
-
-function newWine(req, res) {
-      res.render('wines/new', {
-            title: 'Add a Wine', errorMsg: ''
-      })
 }
 
 async function create(req, res) {
@@ -59,7 +52,8 @@ async function update(req, res) {
 }
 
 async function index(req, res) {
-      const wines = await Wine.find({ 'user': req.user._id }).populate('type').populate('maker').populate('vendors').sort('name')
+      const wines = await Wine.find({ 'user': req.user._id }).populate('type').populate('maker').populate('vendors').sort('name') 
+      console.log('!!!!!!!!!!!!!!!!!!!!!!!!', wines)
       res.render('wines/index', {
             title: 'My Wine List',
             wines
