@@ -66,7 +66,7 @@ input,
 textarea {
   background-color: #dcc9d4;
   color: #44052b;
-  border: solid #44052b;
+  border: .1rem solid #44052b;
   border-radius: 10px;
   font-size: 1rem;
   /* font-family: "Kite One";
@@ -139,9 +139,24 @@ button:hover {
   /* margin-right: 2rem; */
 }
 
+::-webkit-scrollbar {
+  height: 1.3rem;
+  width: 1.3rem;
+  /* border: .1rem solid #44052b; */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  /* background: #44052b; */
+  border: .1rem solid #44052b;
+  /* border: .1rem solid #be9ab0; */
+  border-radius: 10px;
+}
+
 table {
   margin: auto;
   width: 100%;
+  margin-bottom: .5rem;
 }
 
 .inline {
@@ -342,17 +357,6 @@ span.size-20 {
   border: .1rem solid black;
   background-color: #dcc9d4;
 }
-/* .value-d {
-  flex-wrap: nowrap;
-  background-color: #dcc9d4;
-  border-radius: 15px;
-  justify-content: center;
-} */
-/* .value-p {
-  flex-wrap: nowrap;
-  border: .3rem solid #dcc9d4;
-  border-radius: 15px;
-} */
 
 #avg-rating p {
   text-align: center;
@@ -369,7 +373,7 @@ span.size-20 {
   display: flex;
   /* justify-content: center; */
   justify-content: flex-start;
-  gap: 15px;
+  gap: .7rem;
   flex-wrap: nowrap;
 }
 
@@ -382,7 +386,7 @@ span.size-20 {
   flex-wrap: wrap;
   /* justify-content: center; */
   justify-content: flex-start;
-  gap: 10px;
+  gap: .5rem;
   border: none;
   padding: none;
 }
@@ -422,7 +426,7 @@ span.size-20 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 1.2rem;
 }
 
 .date {
@@ -454,7 +458,10 @@ span.size-20 {
 } */
 
 .index-table td {
-  outline: 2px solid black;
+  outline: .1rem solid black;
+}
+tbody {
+  outline: .15rem solid black;
 }
 
 #name-change {
@@ -464,19 +471,19 @@ span.size-20 {
 .index-header {
   display: flex;
   justify-content: space-evenly;
-  gap: 40px;
+  gap: 2rem;
   flex-wrap: wrap;
 }
 
 td {
-  padding: 0 3px;
+  padding: 0 .2rem;
 }
 
 #new-wine-form-at-index,
 #new-vendor-form-at-index {
   display: flex;
   justify-content: flex-end;
-  gap: 5px;
+  gap: .2rem;
   margin: auto 0;
 }
 
@@ -492,14 +499,14 @@ td {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: .5rem;
 }
 
 .vendor {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  gap: 5px;
+  gap: .2rem;
   background-color: #dcc9d4;
   padding: .3rem;
   border-radius: 15px;
@@ -533,7 +540,7 @@ td {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 5px;
+  padding: .2rem;
 }
 
 .note-vintage {

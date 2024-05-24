@@ -21,40 +21,44 @@
     <br>
 
     <div class="index-page-section">
-      <table id="vendor-list" class="index-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Thoughts</th>
-            <th>Wines</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% vendors.forEach(function(v) { %>
+
+      <div class="table-container">
+
+        <table id="vendor-list" class="index-table">
+          <thead>
             <tr>
-              <td><a href="/vendors/<%= v._id %>"><button>
-                    <%= v.name %>
-                  </button></a></td>
-              <td>
-                <%= v.address %>
-              </td>
-              <td>
-                <%= v.thoughts %>
-              </td>
-              <td>
-                <% wines.forEach(function(w) { %>
-                  <% if( w.vendors.includes(v._id)) { %>
-                    <a href="/wines/<%= w._id%>"><button>
-                      <%= w.name %>
-                    </button></a>
-                  <% } %>
-                <% }) %>
-              </td>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Thoughts</th>
+              <th>Wines</th>
             </tr>
-            <% }) %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <% vendors.forEach(function(v) { %>
+              <tr>
+                <td><a href="/vendors/<%= v._id %>"><button>
+                      <%= v.name %>
+                    </button></a></td>
+                <td>
+                  <%= v.address %>
+                </td>
+                <td>
+                  <%= v.thoughts %>
+                </td>
+                <td>
+                  <% wines.forEach(function(w) { %>
+                    <% if( w.vendors.includes(v._id)) { %>
+                      <a href="/wines/<%= w._id%>"><button>
+                        <%= w.name %>
+                      </button></a>
+                    <% } %>
+                  <% }) %>
+                </td>
+              </tr>
+              <% }) %>
+          </tbody>
+        </table>
+      </div>
     </div>
 
   </div>
