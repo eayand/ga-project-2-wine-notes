@@ -29,7 +29,6 @@ async function create(req, res) {
 
 async function edit(req, res) {
     const wine = await Wine.findById(req.params.id)
-    console.log(wine)
     const note = wine.notes.id(req.params.nid)
     res.render('notes/edit', { title: 'Edit Your Note', wine, note })
 }

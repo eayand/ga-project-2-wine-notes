@@ -1,3 +1,17 @@
+FIX NAME SORTING TO IGNORE CAPITAL AND LOWERCASE
+
+Make height of note text area smaller on new note and edit note.
+
+See an Example button that adds an example wine, type, maker, vendor, and notes.
+
+/* 
+theme colors:
+mid red wine #44052b
+dark red wine 
+light red wine #be9ab0
+light white wine #f3f0cf
+*/
+
 wines/show
 Put this back right before Vendors section. Use multi class for this too.
 
@@ -12,40 +26,3 @@ Put this back right before Vendors section. Use multi class for this too.
         <% } %>
     </div>
 </section><br>
-
-
-MAKE IT IMPOSSIBLE TO ADD THE SAME VENDOR TWICE
-
-PREVENT SUBMITTING EMPTY FORMS
-
-FIX NAME SORTING TO IGNORE CAPITAL AND LOWERCASE
-
-
-
-//THIS NEEDS TO BE DEBUGGED, THEN CHANGE TO THIS TO AVOID ADDING VENDORS TWICE
-// async function associate(req, res) {
-//     try {
-//         const wine = await Wine.find({ _id: req.params.id, vendors: {$nin: [req.body.vendorId]} })
-//         if (!wine) return res.redirect(`/wines/${req.params.id}/vendors`)
-//         const vendor = await Vendor.findById(req.body.vendorId)
-//         wine.vendors.push(vendor)
-//         await wine.save()
-//         vendor.wines.push(wine)
-//         await vendor.save()
-//         res.redirect(`/wines/${wine._id}/vendors`)
-//     } catch (err) {
-//         console.log(err)
-//         const wine = await Wine.findById(req.params.id)
-//         const vendor = req.body._id
-//         res.render('vendors/show', { errorMsg: err.message, title: 'Error', wine, vendor })
-//     }
-// }
-
-
-/* 
-theme colors:
-mid red wine #44052b
-dark red wine 
-light red wine #be9ab0
-light white wine #f3f0cf
-*/

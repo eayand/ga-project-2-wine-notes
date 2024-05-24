@@ -53,7 +53,6 @@ async function update(req, res) {
 
 async function index(req, res) {
       const wines = await Wine.find({ 'user': req.user._id }).populate('type').populate('maker').populate('vendors').sort('name') 
-      console.log('!!!!!!!!!!!!!!!!!!!!!!!!', wines)
       res.render('wines/index', {
             title: 'My Wine List',
             wines

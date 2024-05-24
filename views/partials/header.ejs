@@ -11,13 +11,15 @@
     <title><%= title %></title>
 </head>
 <body>
-    <nav>
-        <% if (user) { %>
-            <a href="/wines/index"	<%- title === 'My Wines' ? 'class="active"' : '' %>>Wines</a>
-            <a href="/vendors/index" <%- title === 'My Vendors' ? 'class="active"' : '' %>>Vendors</a>
-            <a href="/logout">Log Out</a>
+    <div class="nav-wrap">
+        <nav>
+            <% if (user) { %>
+                <a href="/wines/index"	<%- title === 'My Wines' ? 'class="active"' : '' %>>Wines</a>
+                <a href="/vendors/index" <%- title === 'My Vendors' ? 'class="active"' : '' %>>Vendors</a>
+                <a href="/logout">Log Out</a>
             <% } %>
         </nav>
-        <div id="outer-limit">
-            <div id="inner-limit">
-        <main>            
+    </div>
+    <div id="outer-limit">
+        <div id="inner-limit">
+    <main>            
