@@ -476,7 +476,7 @@ tbody {
 }
 
 td {
-  padding: 0 .2rem;
+  padding: .2rem;
 }
 
 #new-wine-form-at-index,
@@ -577,6 +577,12 @@ td {
   display: flex;
   justify-content: center;
 }
+.overflow-hidden {
+  line-height: 1.2rem;
+  max-height: 6rem;
+  max-width: 300px;
+  overflow: hidden;
+}
 
 .wine-title {
   margin: 1rem auto;
@@ -616,3 +622,9 @@ input[type=range]::-webkit-slider-thumb {
   margin-top: -14px;
 }
 
+@media screen and (max-width: 850px){
+  .tr-small {
+    max-inline-size: 150px;
+    overflow-wrap: break-word;
+  }
+}

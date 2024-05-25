@@ -36,19 +36,24 @@
           <tbody>
             <% vendors.forEach(function(v) { %>
               <tr>
-                <td><a href="/vendors/<%= v._id %>"><button>
+                <td><a href="/vendors/<%= v._id %>"><button class="normal textwrap tr-small">
                       <%= v.name %>
                     </button></a></td>
-                <td>
-                  <%= v.address %>
+                <td >
+                  <p class="overflow-hidden">
+
+                    <%= v.address %>
+                  </p>
                 </td>
                 <td>
-                  <%= v.thoughts %>
+                  <p class="overflow-hidden">
+                    <%= v.thoughts %>
+                  </p>
                 </td>
                 <td>
                   <% wines.forEach(function(w) { %>
                     <% if( w.vendors.includes(v._id)) { %>
-                      <a href="/wines/<%= w._id%>"><button>
+                      <a href="/wines/<%= w._id%>"><button class="normal textwrap tr-small">
                         <%= w.name %>
                       </button></a>
                     <% } %>

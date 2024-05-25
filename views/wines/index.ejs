@@ -37,7 +37,7 @@
                             <tr>
                                 <td>
                                     <% if (w.name) { %>
-                                        <a href="/wines/<%= w._id %>"><button class="normal textwrap">
+                                        <a href="/wines/<%= w._id %>"><button class="normal textwrap tr-small">
                                                 <%= w.name %>
                                             </button></a>
                                         <% } %>
@@ -45,7 +45,7 @@
 
                                 <td>
                                     <% if (w.type) { %>
-                                        <a href="/types/<%= w.type._id %>"><button class="normal textwrap">
+                                        <a href="/types/<%= w.type._id %>"><button class="normal textwrap tr-small">
                                                 <%= w.type.name %>
                                             </button></a>
                                         <% } %>
@@ -53,7 +53,7 @@
 
                                 <td>
                                     <% if (w.maker) { %>
-                                        <a href="/makers/<%= w.maker._id%>"><button class="normal textwrap">
+                                        <a href="/makers/<%= w.maker._id%>"><button class="normal textwrap tr-small">
                                                 <%= w.maker.name %>
                                             </button></a>
                                         <% } %>
@@ -63,7 +63,7 @@
                                     <% if (w.vendors) { %>
                                         <% w.vendors.forEach(function(v) {%>
                                             <% if (v.name) { %>
-                                                <a href="/vendors/<%= v._id%>"><button class="normal textwrap">
+                                                <a href="/vendors/<%= v._id%>"><button class="normal textwrap tr-small">
                                                         <%= v.name %>
                                                     </button></a>
                                                 <% } %>
